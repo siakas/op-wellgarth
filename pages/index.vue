@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    <div v-for="post in posts" :key="post.sys.id">
-      <p>{{ post.sys.id }}</p>
-      <p>{{ post.sys.updatedAt }}</p>
-      <p>{{ post.fields.title }}</p>
-      <p>{{ post.fields.slug }}</p>
+    <h1>contentful のデータを取得して表示確認</h1>
+    <div v-for="post in posts" :key="post.sys.id" class="entries">
+      <p>ID：{{ post.sys.id }}</p>
+      <p>更新日：{{ post.sys.updatedAt }}</p>
+      <p>タイトル：{{ post.fields.title }}</p>
+      <p>スラッグ：{{ post.fields.slug }}</p>
       <div>
-        {{ post.fields.description }}
+        概要：{{ post.fields.description }}
       </div>
       <hr>
     </div>
@@ -32,5 +33,15 @@ export default {
 </script>
 
 <style>
+body {
+  padding: 3em;
+}
 
+.entries {
+  margin: 2em 0 0;
+}
+
+hr {
+  margin: 2em 0;
+}
 </style>
