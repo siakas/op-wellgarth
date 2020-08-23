@@ -1,17 +1,17 @@
-<template>
-  <div class="container">
-    <h1>contentful のデータを取得して表示確認</h1>
-    <div v-for="post in posts" :key="post.sys.id" class="entries">
-      <p>ID：{{ post.sys.id }}</p>
-      <p>更新日：{{ post.sys.updatedAt }}</p>
-      <p>タイトル：{{ post.fields.title }}</p>
-      <p>スラッグ：{{ post.fields.slug }}</p>
-      <div>
-        概要：{{ post.fields.description }}
-      </div>
-      <hr>
-    </div>
-  </div>
+<template lang="pug">
+.container
+  h1
+    | contentful のデータを取得して表示確認
+  div.entries(v-for="post in posts" :key="post.sys.id")
+    p
+      | ID：{{ post.sys.id }}
+    p
+      | 更新日：{{ post.sys.updatedAt }}
+    p
+      | タイトル：{{ post.fields.title }}
+    p
+      | スラッグ：{{ post.fields.slug }}
+    div(v-html="$md.render(post.fields.description)")
 </template>
 
 <script>
@@ -32,16 +32,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   padding: 3em;
 }
 
 .entries {
   margin: 2em 0 0;
-}
 
-hr {
-  margin: 2em 0;
+  hr {
+    margin: 2em 0;
+  }
 }
 </style>

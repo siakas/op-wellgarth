@@ -54,11 +54,21 @@ export default {
   */
   modules: [
     '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
+    '@nuxtjs/markdownit',
   ],
 
   env: {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
     CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
+  },
+
+  markdownit: {
+    injected: true, // $md を利用して markdown を html にレンダリングする
+    breaks: true, // 改行コードを <br> に変換する
+    html: true, // HTML タグを有効にする
+    linkify: true, // URL に似たテキストをリンクに自動変換する
+    typography: true // 言語に依存しないきれいな置換＋引用符を有効にします。
   },
 
   /*
