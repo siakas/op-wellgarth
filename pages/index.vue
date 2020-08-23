@@ -1,73 +1,36 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        op-wellgarth
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <div v-for="post in posts" :key="post.sys.id">
+      <p>{{ post.sys.id }}</p>
+      <p>{{ post.sys.updatedAt }}</p>
+      <p>{{ post.fields.title }}</p>
+      <p>{{ post.fields.slug }}</p>
+      <div>
+        {{ post.fields.description }}
       </div>
+      <hr>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import contentfulClient from '@/plugins/contentful'
+
+export default {
+  asyncData({ env }) {
+    return contentfulClient
+      .getEntries({
+        content_type: 'spot' // コンテンツモデル `spot` の全エントリを取得
+      })
+      .then((entries) => {
+        return {
+          posts: entries.items
+        }
+      })
+  }
+}
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
