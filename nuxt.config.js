@@ -10,6 +10,10 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
   target: 'static',
+
+  // ソースディレクトリの指定
+  srcDir: 'src/',
+
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
