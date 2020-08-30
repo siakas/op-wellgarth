@@ -14,6 +14,20 @@
       nuxt-link(:to="`/spot/${post.fields.slug}`")
         | {{ post.fields.slug }}
     div(v-html="$md.render(post.fields.description)")
+    p
+      | エリア：{{ post.fields.area.fields.name }}（{{ post.fields.area.fields.slug }}）
+    div
+      | カテゴリ：
+      ul
+        li(
+          v-for="(category, index) in post.fields.categories"
+          :key="category.fields.slug"
+        )
+          | {{ category.fields.name }}（{{ category.fields.slug }}）
+    p
+      | Google Map：
+      a(:href="post.fields.googleMap", target='_blank', rel='noopener noreferrer')
+        | {{ post.fields.googleMap }}
 </template>
 
 <script>
