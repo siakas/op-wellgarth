@@ -1,45 +1,60 @@
+// サイトタイトル
+const siteTitle = 'Kyoto Star Spot'
 
 export default {
-  /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
   mode: 'universal',
-  /*
-  ** Nuxt target
-  ** See https://nuxtjs.org/api/configuration-target
-  */
   target: 'static',
-
-  // ソースディレクトリの指定
   srcDir: 'src/',
-
   /*
-  ** Headers of the page
-  ** See https://nuxtjs.org/api/configuration-head
-  */
+   ** Headers of the page
+   */
   head: {
-    title: process.env.npm_package_name || '',
+    htmlAttrs: {
+      lang: 'ja'
+    },
+    titleTemplate: '%s | ' + siteTitle,
+    title: siteTitle || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { name: 'robots', content: 'noindex,nofollow' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'og:site_name', name: 'og:site_name', content: siteTitle || '' },
+      { hid: 'og:type', name: 'og:type', content: 'website' },
+      { hid: 'og:url', name: 'og:url', content: 'https://www.kyoto-starspot.net/' },
+      { hid: 'og:title', name: 'og:title', content: siteTitle || '' },
+      { hid: 'og:description', name: 'og:description', content: process.env.npm_package_description || '' },
     ],
     link: [
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans&display=swap'
+      },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
-  ** Global CSS
-  */
+   ** Customize the progress-bar color
+   */
+  loading: {
+    color: '#fff'
+  },
+  /*
+   ** Global CSS
+   */
   css: [
+    {
+      src: '@@/node_modules/sanitize.css/sanitize.css',
+      lang: 'css'
+    },
+    '@/assets/scss/base.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '@/plugins/contentful'
   ],
   /*
   ** Auto import components
@@ -64,7 +79,8 @@ export default {
 
   env: {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
+    CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID
   },
 
   markdownit: {

@@ -5,4 +5,6 @@ const config = {
   accessToken: process.env.CTF_CDA_ACCESS_TOKEN
 }
 
-export default contentful.createClient(config)
+const client = contentful.createClient(config)
+
+export default client
