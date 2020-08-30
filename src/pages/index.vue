@@ -10,7 +10,9 @@
     p
       | タイトル：{{ post.fields.title }}
     p
-      | スラッグ：{{ post.fields.slug }}
+      | スラッグ：
+      nuxt-link(:to="`/spot/${post.fields.slug}`")
+        | {{ post.fields.slug }}
     div(v-html="$md.render(post.fields.description)")
 </template>
 
