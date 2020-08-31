@@ -20,6 +20,8 @@ module.exports = {
     // 連続スペースの許可
     'no-multi-spaces': 0,
     // 関数宣言時の括弧の前にスペースを空けない
-    'space-before-function-paren': [2, 'never']
+    // 'space-before-function-paren': [2, 'never']
+    // warn / error 以外の console を許可しない
+    'no-console': [1, { allow: ['warn', 'error'] }],
   }
 }

@@ -1,0 +1,8 @@
+// word-break プロパティは禁則処理の指定を行うが、
+// word-break: break-all ですべての禁則処理を無効化すると、
+// 英単語の途中でも強制的に改行されてしまうなど問題が多いため、word-break: break-all は使用しない
+._u-word-wrap {
+  word-wrap: break-word; // overflow-wrap の旧名称。元々は IE の独自実装
+  word-break: break-word;
+  overflow-wrap: break-word; // word-wrap プロパティが CSS3 で改称されたもの
+}

@@ -1,0 +1,137 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  tab-size: 4;
+  font-size: 62.5%;
+  line-height: 1.55;
+  -webkit-tap-highlight-color: transparent; // 標準化予定のない独自プロパティ
+  text-size-adjust: 100%;
+  @extend ._u-word-wrap;
+
+  @include mq($from: tablet) {
+    overflow-x: hidden;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  color: palette('text');
+  background: palette('bg');
+}
+
+a {
+  text-decoration: underline;
+  background-color: transparent;
+  color: palette("link");
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+img,
+svg {
+  vertical-align: bottom;
+  max-width: 100%;
+}
+
+figure {
+  margin: 0;
+}
+
+pre {
+  font-family: "Menlo", "Monaco", "Bitstream Vera Sans Mono", "Lucida Console", "Consolas", "Courier", monospace;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+p {
+  max-height: 100%;
+  margin: 0;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  // list-style-type: none によるリストマーカーのリセットは li 要素のみで指定し、
+  // 個別に指定したい場合はコンポーネントごとに inherit に変更する
+  list-style-type: none;
+}
+
+hr {
+  display: none;
+}
+
+main {
+  display: block;
+}
+
+input,
+textarea,
+button,
+optgroup,
+select {
+  margin: 0;
+  font: inherit;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none;
+}
+
+// スムーススクロール後のキーボードフォーカス遷移のために、
+// 動的に tabindex を設定した要素にはアウトラインを表示しない
+[tabindex="-1"],
+[tabindex="-1"]:focus {
+  outline: none !important;
+}
+
+// iOS でフォーム入力中に画面が自動ズームするのを回避
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  @include mq($until: tablet) {
+    font-size: 16px !important;
+  }
+}
