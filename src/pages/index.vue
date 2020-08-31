@@ -6,9 +6,12 @@ div
     li(v-for="post in posts" :key="post.sys.id")
       nuxt-link(:to="`/spot/${post.fields.slug}`")
         | {{ post.fields.title }}
+      template(v-if="isDraft(post)")
+        p 下書きです！！！！
+      div(v-html="$md.render(post.fields.description)")
 
-  div
-    | {{ posts }}
+  //- div
+  //-   | {{ posts }}
 
 //- .container
 //-   h1
@@ -43,6 +46,7 @@ div
 
 <script>
 import client from '@/plugins/contentful'
+import { mapGetters } from 'vuex'
 
 export default {
   async asyncData ({ env }) {
@@ -52,6 +56,11 @@ export default {
       order: 'sys.createdAt' // コンテンツ作成の昇順（頭に - をつけると降順となる）
     }).then(res => (posts = res.items)).catch(console.error)
     return { posts }
-  }
+  },
+  computed: {
+    ...mapGetters([
+      'isDraft'
+    ])
+  },
 }
 </script>

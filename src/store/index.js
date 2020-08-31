@@ -10,6 +10,9 @@ export const getters = {
   //   return state.value
   // }
 
+  /**
+   * デフォルトアイキャッチの設定
+   */
   // 通常、getter は文字列や配列、オブジェクトの形式で使われるが、
   // このように foo: () => (arg) => {} の形式だと、メソッドとして定義できる
   setEyeCatch: () => (post) => {
@@ -29,6 +32,15 @@ export const getters = {
         url: defaultEyeCatch,
         title: ''
       }
+    }
+  },
+
+  /**
+   * 下書きフラグのチェック
+   */
+  isDraft: () => (post) => {
+    if (post.fields.draft) {
+      return true
     }
   }
 }

@@ -3,6 +3,10 @@ div
   h1
     | {{ currentPost.fields.title }}
 
+  template(v-if="isDraft(currentPost)")
+    p
+      | 下書き記事です！！！！！！！！！！！！
+
   div
     img(
       :src='setEyeCatch(currentPost).url',
@@ -31,7 +35,8 @@ export default {
 
   computed: {
     ...mapGetters([
-      'setEyeCatch'
+      'setEyeCatch',
+      'isDraft'
     ])
   },
 }
