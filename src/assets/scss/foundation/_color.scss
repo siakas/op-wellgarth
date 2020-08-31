@@ -1,0 +1,38 @@
+$primaryColor: #ba2636;
+$secondaryColor: #4d5aaf;
+
+$palettes: (
+  "prim": (
+    "default": $primaryColor,
+    "demi-light": lighten($primaryColor, 10%),
+    "light": lighten($primaryColor, 20%),
+    "demi-dark": darken($primaryColor, 10%),
+    "dark": darken($primaryColor, 20%),
+  ),
+  "seco": (
+    "default": $secondaryColor,
+    "demi-light": lighten($secondaryColor, 10%),
+    "light": lighten($secondaryColor, 20%),
+    "demi-dark": darken($secondaryColor, 10%),
+    "dark": darken($secondaryColor, 20%),
+  ),
+  "text": (
+    "default": #393939,
+  ),
+  "bg": (
+    "default": #f9f9f9,
+  ),
+  "border": (
+    "default": #d9d9d9,
+  ),
+  "link": (
+    "default": #2858b3,
+    "hover": #2858b3,
+  ),
+  "em": (
+    "default": $secondaryColor,
+  ),
+  "alert": (
+    "default": #f00,
+  )
+);
