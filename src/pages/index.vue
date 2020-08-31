@@ -3,10 +3,12 @@ div
   h1
     | トップです
   ul
-    li: a(href='null') ほげほげ
-    li: a(href='null') ほげほげ
-    li: a(href='null') ほげほげ
-    li: a(href='null') ほげほげ
+    li(v-for="post in posts" :key="post.sys.id")
+      nuxt-link(:to="`/spot/${post.fields.slug}`")
+        | {{ post.fields.title }}
+
+  div
+    | {{ posts }}
 
 //- .container
 //-   h1
