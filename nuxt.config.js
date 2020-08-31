@@ -1,3 +1,5 @@
+const client = require('./src/plugins/contentful').default
+
 // サイトタイトル
 const siteTitle = 'Kyoto Star Spot'
 
@@ -97,5 +99,27 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-  }
+  },
+  /*
+   ** Generate configuration
+   */
+  generate: {
+    // generate 時に動的ルーティングも出力するように、ページの配列を routes に渡す
+    routes () {
+      return Promise.all([
+        client.getEntries({
+          content_type: process.env.CTF_BLOG_POST_TYPE_ID
+        })
+      ]).then(([posts]) => {
+        return [
+          ...posts.items.map((post) => {
+            return {
+              route: `/spot/${post.fields.slug}`,
+              payload: post
+            }
+          })
+        ]
+      })
+    }
+  },
 }
