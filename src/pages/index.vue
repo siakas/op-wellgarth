@@ -6,6 +6,9 @@ div
     li(v-for="post in posts" :key="post.sys.id")
       nuxt-link(:to="`/spot/${post.fields.slug}`")
         | {{ post.fields.title }}
+      p
+        | エリア：
+        nuxt-link(:to="`/area/${post.fields.area.fields.slug}`") {{ post.fields.area.fields.name }}
       template(v-if="isDraft(post)")
         p 下書きです！！！！
       div(v-html="$md.render(post.fields.description)")
