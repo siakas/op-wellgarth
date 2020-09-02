@@ -4,7 +4,8 @@ import client from '@/plugins/contentful'
 import defaultEyeCatch from '@/assets/img/default-eyecatch.jpg'
 
 export const state = () => ({
-  posts: []
+  posts: [],
+  areas: []
 })
 
 export const getters = {
@@ -12,7 +13,18 @@ export const getters = {
    * 全エントリを getters として複製
    */
   posts: state => state.posts,
-
+  /**
+   * エリア一覧を getters として複製
+   */
+  areas: state => state.areas,
+  /**
+   * エリアに一致するスポットを取得
+   */
+  relatedAreaPosts: (state, getters) => (area) => {
+    return getters.posts.filter((post) => {
+      return post.fields.area.sys.id === area.sys.id // slug で判定してもいいが id の方が唯一で検索しやすい
+    })
+  },
   /**
    * デフォルトアイキャッチの設定
    */
@@ -50,6 +62,9 @@ export const getters = {
 export const mutations = {
   SET_POSTS (state, payload) {
     state.posts = payload
+  },
+  SET_AREAS (state, payload) {
+    state.areas = payload
   }
 }
 
@@ -64,6 +79,19 @@ export const actions = {
       })
       .then((res) => {
         commit('SET_POSTS', res.items)
+      })
+      .catch(console.error)
+  },
+
+  // contentful にアクセスしてエリア一覧を取得（エリアを管理しているコンテンツモデルにアクセスする）
+  async fetchAreas ({ commit }) {
+    await client
+      .getEntries({
+        content_type: 'spotArea', // CONTENT TYPE ID
+        order: '-sys.createdAt'
+      })
+      .then((res) => {
+        commit('SET_AREAS', res.items)
       })
       .catch(console.error)
   }

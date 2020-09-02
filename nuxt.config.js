@@ -115,15 +115,25 @@ export default {
       return Promise.all([
         client.getEntries({
           content_type: process.env.CTF_BLOG_POST_TYPE_ID
+        }),
+        // エリア一覧の配列も渡すようにする
+        client.getEntries({
+          content_type: 'spotArea'
         })
-      ]).then(([posts]) => {
+      ]).then(([posts, areas]) => {
         return [
           ...posts.items.map((post) => {
             return {
               route: `/spot/${post.fields.slug}`,
               payload: post
             }
-          })
+          }),
+          ...areas.items.map((area) => {
+            return {
+              route: `/area/${area.fields.slug}`,
+              payload: area
+            }
+          }),
         ]
       })
     }
