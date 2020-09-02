@@ -21,7 +21,8 @@ div
           v-for="category in post.fields.categories"
           :key="category.sys.id"
         )
-          | {{ category.fields.name }} {{ category.fields.slug }}
+          nuxt-link(:to="`/category/${category.fields.slug}`")
+            | {{ category.fields.name }} {{ category.fields.slug }}
 
       hr(style="display:block")
 

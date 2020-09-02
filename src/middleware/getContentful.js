@@ -7,4 +7,7 @@ export default async ({ store }) => {
   if (!store.state.areas.length) {
     await store.dispatch('fetchAreas')
   }
+  if (!store.state.categories.length) {
+    await store.dispatch('fetchCategories')
+  }
 }

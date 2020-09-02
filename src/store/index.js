@@ -7,7 +7,8 @@ import _ from 'lodash'
 
 export const state = () => ({
   posts: [],
-  areas: []
+  areas: [],
+  categories: []
 })
 
 export const getters = {
@@ -19,6 +20,10 @@ export const getters = {
    * エリア一覧を getters として複製
    */
   areas: state => state.areas,
+  /**
+   * カテゴリ一覧を getters として複製
+   */
+  categories: state => state.categories,
   /**
    * エリアに一致するスポットを取得
    */
@@ -71,6 +76,9 @@ export const mutations = {
   },
   SET_AREAS (state, payload) {
     state.areas = payload
+  },
+  SET_CATEGORIES (state, payload) {
+    state.categories = payload
   }
 }
 
@@ -98,6 +106,19 @@ export const actions = {
       })
       .then((res) => {
         commit('SET_AREAS', res.items)
+      })
+      .catch(console.error)
+  },
+
+  // カテゴリ一覧を取得（カテゴリを管理しているコンテンツモデルにアクセスする）
+  async fetchCategories ({ commit }) {
+    await client
+      .getEntries({
+        content_type: 'spotCategories',
+        order: '-sys.createdAt'
+      })
+      .then((res) => {
+        commit('SET_CATEGORIES', res.items)
       })
       .catch(console.error)
   }
