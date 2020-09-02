@@ -45,21 +45,13 @@ div
 </template>
 
 <script>
-import client from '@/plugins/contentful'
 import { mapGetters } from 'vuex'
 
 export default {
-  async asyncData ({ env }) {
-    let posts = []
-    await client.getEntries({
-      content_type: env.CTF_BLOG_POST_TYPE_ID, // コンテンツモデル `spot` の全エントリを取得
-      order: 'sys.createdAt' // コンテンツ作成の昇順（頭に - をつけると降順となる）
-    }).then(res => (posts = res.items)).catch(console.error)
-    return { posts }
-  },
   computed: {
     ...mapGetters([
-      'isDraft'
+      'posts',
+      'isDraft',
     ])
   },
 }

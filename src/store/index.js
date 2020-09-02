@@ -1,14 +1,17 @@
+// contentful にアクセスするための設定
+import client from '@/plugins/contentful'
 // エントリに画像登録がない場合のデフォルト画像
 import defaultEyeCatch from '@/assets/img/default-eyecatch.jpg'
 
-// export const state = () => ({
-//   key: 'value'
-// })
+export const state = () => ({
+  posts: []
+})
 
 export const getters = {
-  // getterValue: state => {
-  //   return state.value
-  // }
+  /**
+   * 全エントリを getters として複製
+   */
+  posts: state => state.posts,
 
   /**
    * デフォルトアイキャッチの設定
@@ -34,7 +37,6 @@ export const getters = {
       }
     }
   },
-
   /**
    * 下書きフラグのチェック
    */
@@ -45,18 +47,24 @@ export const getters = {
   }
 }
 
-// export const mutations = {
-//   setValue (state, payload) {
-//     state.value = payload
-//   }
-// }
+export const mutations = {
+  SET_POSTS (state, payload) {
+    state.posts = payload
+  }
+}
 
-// export const actions = {
-//   getActionValue ({ commit }, payload) {
-//     commit('setValue', payload)
-//   },
-//   async getEntries ({ commit }) {
-//     const res = await this.axios.get('/path/to/api')
-//     commit('setEntries', res)
-//   }
-// }
+export const actions = {
+  // contentful にアクセスして全エントリを取得
+  // actions で設定して、これを middleware で呼び出す？
+  async fetchPosts ({ commit }) {
+    await client
+      .getEntries({
+        content_type: process.env.CTF_BLOG_POST_TYPE_ID, // コンテンツモデル `spot` の全エントリを取得
+        order: '-sys.createdAt' // コンテンツ作成の昇順（頭に - をつけると降順となる）
+      })
+      .then((res) => {
+        commit('SET_POSTS', res.items)
+      })
+      .catch(console.error)
+  }
+}
