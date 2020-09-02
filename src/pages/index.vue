@@ -9,9 +9,21 @@ div
       p
         | エリア：
         nuxt-link(:to="`/area/${post.fields.area.fields.slug}`") {{ post.fields.area.fields.name }}
+
       template(v-if="isDraft(post)")
         p 下書きです！！！！
+
       div(v-html="$md.render(post.fields.description)")
+
+      //- カテゴリ一覧を出力（カテゴリは複数付与可能の設定なので、配列として格納されている）
+      ul
+        li(
+          v-for="category in post.fields.categories"
+          :key="category.sys.id"
+        )
+          | {{ category.fields.name }} {{ category.fields.slug }}
+
+      hr(style="display:block")
 
   //- div
   //-   | {{ posts }}

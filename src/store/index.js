@@ -2,6 +2,8 @@
 import client from '@/plugins/contentful'
 // エントリに画像登録がない場合のデフォルト画像
 import defaultEyeCatch from '@/assets/img/default-eyecatch.jpg'
+// lodash
+import _ from 'lodash'
 
 export const state = () => ({
   posts: [],
@@ -21,8 +23,12 @@ export const getters = {
    * エリアに一致するスポットを取得
    */
   relatedAreaPosts: (state, getters) => (area) => {
-    return getters.posts.filter((post) => {
-      return post.fields.area.sys.id === area.sys.id // slug で判定してもいいが id の方が唯一で検索しやすい
+    // return getters.posts.filter((post) => {
+    //   return post.fields.area.sys.id === area.sys.id // slug で判定してもいいが id の方が唯一で検索しやすい
+    // })
+    // 上の ES6 の記述は lodash だと下記のようになる
+    return _.filter(getters.posts, (post) => {
+      return post.fields.area.sys.id === area.sys.id
     })
   },
   /**
