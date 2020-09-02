@@ -1,5 +1,10 @@
 <template lang="pug">
 div
+  nav-breadcrumb(
+    :name="post.fields.area.fields.name"
+    :slug="post.fields.area.fields.slug"
+  )
+
   h1
     | {{ post.fields.title }}
 
@@ -48,3 +53,18 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.breadcrumb {
+  margin: 0 0 45px;
+  ol {
+    display: flex;
+    li:not(:last-child) {
+      &::after {
+        content: '>';
+        margin: 0 0.8em;
+      }
+    }
+  }
+}
+</style>
