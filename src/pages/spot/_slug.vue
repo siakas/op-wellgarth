@@ -1,42 +1,42 @@
 <template lang="pug">
 div
   h1
-    | {{ currentPost.fields.title }}
+    | {{ post.fields.title }}
 
-  template(v-if="isDraft(currentPost)")
+  template(v-if="isDraft(post)")
     p
       | 下書き記事です！！！！！！！！！！！！
 
   div
     img(
-      :src='setEyeCatch(currentPost).url',
-      :alt='setEyeCatch(currentPost).title'
+      :src='setEyeCatch(post).url',
+      :alt='setEyeCatch(post).title'
     )
 
-  div(v-html="$md.render(currentPost.fields.description)")
+  div(v-html="$md.render(post.fields.description)")
 
   p
     nuxt-link(to="/") トップへ
 </template>
 
 <script>
-import client from '@/plugins/contentful'
 import { mapGetters } from 'vuex'
 
 export default {
-  async asyncData ({ env, params, payload }) {
-    // payload から渡るデータがあれば、それを currentPost に渡す
-    if (payload) {
-      return {
-        currentPost: payload
-      }
+  async asyncData ({ store, params, payload, error }) {
+    // payload から渡るデータがあれば（静的出力時）、それを post に渡し、
+    // payload がない場合（開発時）は、URL パラメタの slug をもとに Vuex から取得するようにする
+    const post =
+      payload ||
+      (await store.getters.posts.find((post) => {
+        return post.fields.slug === params.slug
+      }))
+
+    // post へのデータの格納をチェックしてリターン
+    if (post) {
+      return { post } // オブジェクトを post: {...} の形で返却
     } else {
-      let currentPost = []
-      await client.getEntries({
-        content_type: env.CTF_BLOG_POST_TYPE_ID, // コンテンツモデル `spot` の全エントリを取得
-        'fields.slug': params.slug
-      }).then(res => (currentPost = res.items[0])).catch(console.error)
-      return { currentPost }
+      return error({ statusCode: 400 })
     }
   },
 
