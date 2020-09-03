@@ -17,8 +17,6 @@ div
 </template>
 
 <script>
-import client from '@/plugins/contentful'
-
 export default {
   async asyncData ({ env, store, params, payload, error }) {
     // payload から渡るデータがあればそれを tag に渡し、
@@ -35,12 +33,17 @@ export default {
       // ここでは別パターンの手法として、ブログ記事にならって直接 API を叩くことにする
       // https://blog.cloud-acct.com/posts/blog-tagposts/
       // ただ、やはりこれだと静的化後はともかく、開発時はつどつどで API を叩くため処理が遅くなってしまう
-      const tagPosts = await client.getEntries({
-        content_type: env.CTF_BLOG_POST_TYPE_ID, // メインブログを指定
-        'fields.tags.sys.id': tag.sys.id // カテゴリ ID が一致する記事を取得
-      })
-        .then(res => res.items)
-        .catch(console.error)
+      // const tagPosts = await client.getEntries({
+      //   content_type: env.CTF_BLOG_POST_TYPE_ID, // メインブログを指定
+      //   'fields.tags.sys.id': tag.sys.id // カテゴリ ID が一致する記事を取得
+      // })
+      //   .then(res => res.items)
+      //   .catch(console.error)
+
+      // 上記の tag をもとに API を叩く処理はやめて、
+      // エリアのように getters で定義したメソッドを使ってエントリ一覧からタグが一致するエントリを収集する方法にする
+      // エリアでは computed を使っていたが……
+      const tagPosts = store.getters.relatedTagPosts(tag)
 
       return { tag, tagPosts } // オブジェクトを tag: {...} の形で返却
     } else {

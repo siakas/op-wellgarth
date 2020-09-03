@@ -8,24 +8,16 @@ import _ from 'lodash'
 export const state = () => ({
   posts: [],
   areas: [],
-  tags: []
+  tags: [],
 })
 
 export const getters = {
-  /**
-   * 全エントリを getters として複製
-   */
   posts: state => state.posts,
-  /**
-   * エリア一覧を getters として複製
-   */
   areas: state => state.areas,
-  /**
-   * タグ一覧を getters として複製
-   */
   tags: state => state.tags,
+
   /**
-   * エリアに一致するスポットを取得
+   * エリアに一致するスポットを取得するメソッド
    */
   relatedAreaPosts: (state, getters) => (area) => {
     // return getters.posts.filter((post) => {
@@ -36,6 +28,26 @@ export const getters = {
       return post.fields.area.sys.id === area.sys.id
     })
   },
+
+  /**
+   * タグに関連するスポット一覧を取得するメソッド（上のエリア関連スポットの取得と同じか？ であれば上と記述をそろえる）
+   */
+  relatedTagPosts: state => (currentTag) => {
+    const posts = []
+    for (let i = 0; i < state.posts.length; i++) {
+      const post = state.posts[i]
+      if (post.fields.tags) {
+        const tag = post.fields.tags.find((tag) => {
+          return tag.sys.id === currentTag.sys.id
+        })
+        if (tag) {
+          posts.push(post)
+        }
+      }
+    }
+    return posts
+  },
+
   /**
    * デフォルトアイキャッチの設定
    */
@@ -74,11 +86,17 @@ export const mutations = {
   SET_POSTS (state, payload) {
     state.posts = payload
   },
-  SET_AREAS (state, payload) {
-    state.areas = payload
-  },
-  SET_TAGS (state, payload) {
-    state.tags = payload
+
+  // includes で取得した関連モデル（reference）を、areas と tags に振り分ける
+  SET_REFERENCE (state, payload) {
+    state.areas = []
+    state.tags = []
+    state.areas = _.filter(payload, (i) => {
+      return i.sys.contentType.sys.id === 'spotArea'
+    })
+    state.tags = _.filter(payload, (i) => {
+      return i.sys.contentType.sys.id === 'spotTags'
+    })
   }
 }
 
@@ -89,37 +107,13 @@ export const actions = {
     await client
       .getEntries({
         content_type: process.env.CTF_BLOG_POST_TYPE_ID, // コンテンツモデル `spot` の全エントリを取得
-        order: '-sys.createdAt' // コンテンツ作成の昇順（頭に - をつけると降順となる）
+        order: '-sys.createdAt', // コンテンツ作成の昇順（頭に - をつけると降順となる）
+        include: 1 // エントリの関連情報を取得（関連先の階層を指定。デフォルトは 1 だが明示的に指定。area や tag にさらに関連するモデル（孫モデル）を取得したければ 2 を指定する）
       })
       .then((res) => {
+        commit('SET_REFERENCE', res.includes.Entry) // 関連モデルがすべてまとめて格納される
         commit('SET_POSTS', res.items)
       })
       .catch(console.error)
   },
-
-  // contentful にアクセスしてエリア一覧を取得（エリアを管理しているコンテンツモデルにアクセスする）
-  async fetchAreas ({ commit }) {
-    await client
-      .getEntries({
-        content_type: 'spotArea', // CONTENT TYPE ID
-        order: '-sys.createdAt'
-      })
-      .then((res) => {
-        commit('SET_AREAS', res.items)
-      })
-      .catch(console.error)
-  },
-
-  // タグ一覧を取得（タグを管理しているコンテンツモデルにアクセスする）
-  async fetchTags ({ commit }) {
-    await client
-      .getEntries({
-        content_type: 'spotTags',
-        order: '-sys.createdAt'
-      })
-      .then((res) => {
-        commit('SET_TAGS', res.items)
-      })
-      .catch(console.error)
-  }
 }
