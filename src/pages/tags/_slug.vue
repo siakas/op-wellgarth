@@ -1,15 +1,15 @@
 <template lang="pug">
 div
   nav-breadcrumb(
-    name="カテゴリ一覧"
-    dir="category"
+    name="タグ一覧"
+    dir="tags"
   )
 
   h1
-    | {{ category.fields.name }}
+    | {{ tag.fields.name }}
 
   ul
-    li(v-for="post in categoryPosts" :key="post.sys.id")
+    li(v-for="post in tagPosts" :key="post.sys.id")
       | {{ post.fields.title }}
       br
       | {{ post.fields.area.fields.name }}
@@ -21,28 +21,28 @@ import client from '@/plugins/contentful'
 
 export default {
   async asyncData ({ env, store, params, payload, error }) {
-    // payload から渡るデータがあればそれを category に渡し、
+    // payload から渡るデータがあればそれを tag に渡し、
     // payload がない場合は、URL パラメタの slug をもとに Vuex から取得する
-    const category =
+    const tag =
       payload ||
-      (await store.getters.categories.find((category) => {
-        return category.fields.slug === params.slug
+      (await store.getters.tags.find((tag) => {
+        return tag.fields.slug === params.slug
       }))
 
-    // category のデータを格納をチェックしてリターン
-    if (category) {
+    // tag のデータを格納をチェックしてリターン
+    if (tag) {
       // area のように getters に関連ポストを収集するメソッドを準備して、それを利用してもいいのだが、
       // ここでは別パターンの手法として、ブログ記事にならって直接 API を叩くことにする
       // https://blog.cloud-acct.com/posts/blog-tagposts/
       // ただ、やはりこれだと静的化後はともかく、開発時はつどつどで API を叩くため処理が遅くなってしまう
-      const categoryPosts = await client.getEntries({
+      const tagPosts = await client.getEntries({
         content_type: env.CTF_BLOG_POST_TYPE_ID, // メインブログを指定
-        'fields.categories.sys.id': category.sys.id // カテゴリ ID が一致する記事を取得
+        'fields.tags.sys.id': tag.sys.id // カテゴリ ID が一致する記事を取得
       })
         .then(res => res.items)
         .catch(console.error)
 
-      return { category, categoryPosts } // オブジェクトを category: {...} の形で返却
+      return { tag, tagPosts } // オブジェクトを tag: {...} の形で返却
     } else {
       return error({ statusCode: 400 })
     }
