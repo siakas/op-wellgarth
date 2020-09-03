@@ -119,8 +119,12 @@ export default {
         // エリア一覧の配列も渡すようにする
         client.getEntries({
           content_type: 'spotArea'
+        }),
+        // タグ一覧の配列も渡すようにする
+        client.getEntries({
+          content_type: 'spotTags'
         })
-      ]).then(([posts, areas]) => {
+      ]).then(([posts, areas, tags]) => {
         return [
           ...posts.items.map((post) => {
             return {
@@ -132,6 +136,12 @@ export default {
             return {
               route: `/area/${area.fields.slug}`,
               payload: area
+            }
+          }),
+          ...tags.items.map((tag) => {
+            return {
+              route: `/tags/${tag.fields.slug}`,
+              payload: tag
             }
           }),
         ]
