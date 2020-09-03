@@ -30,22 +30,15 @@ export const getters = {
   },
 
   /**
-   * タグに関連するスポット一覧を取得するメソッド（上のエリア関連スポットの取得と同じか？ であれば上と記述をそろえる）
+   * タグに関連するスポット一覧を取得するメソッド
+   * 配列内のオブジェクトの中にさらに配列を持つ場合の特定をしている（今回はタグ情報を配列で持っている）
    */
-  relatedTagPosts: state => (currentTag) => {
-    const posts = []
-    for (let i = 0; i < state.posts.length; i++) {
-      const post = state.posts[i]
-      if (post.fields.tags) {
-        const tag = post.fields.tags.find((tag) => {
-          return tag.sys.id === currentTag.sys.id
-        })
-        if (tag) {
-          posts.push(post)
-        }
-      }
-    }
-    return posts
+  relatedTagPosts: (state, getters) => (currentTag) => {
+    return _.filter(getters.posts, (post) => {
+      return post.fields.tags.find((tag) => {
+        return tag.sys.id === currentTag.sys.id
+      })
+    })
   },
 
   /**
