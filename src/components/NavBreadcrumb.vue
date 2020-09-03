@@ -5,7 +5,7 @@ div
       li
         nuxt-link(to="/") トップ
       li
-        nuxt-link(:to="`/area/${slug}`") {{ name }}
+        nuxt-link(:to="`/${dir}/${slug}`") {{ name }}
 </template>
 
 <script>
@@ -16,6 +16,10 @@ export default {
       default: ''
     },
     slug: {
+      type: String,
+      default: ''
+    },
+    dir: {
       type: String,
       default: ''
     }

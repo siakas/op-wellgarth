@@ -3,15 +3,18 @@ div
   nav-breadcrumb(
     :name="area.fields.name"
     :slug="area.fields.slug"
+    dir="area"
   )
 
   h1
     | {{ area.fields.name }}
 
-  div(v-for="post in areaPosts" :key="post.sys.id")
-    | {{ post.fields.title }}
-    br
-    | {{ post.fields.area.fields.name }}
+  ul
+    li(v-for="post in areaPosts" :key="post.sys.id")
+      | {{ post.fields.title }}
+      br
+      | {{ post.fields.area.fields.name }}
+      hr(style="display:block")
 </template>
 
 <script>
@@ -27,7 +30,7 @@ export default {
 
     // post へのデータの格納をチェックしてリターン
     if (area) {
-      return { area } // オブジェクトを post: {...} の形で返却
+      return { area } // オブジェクトを area: {...} の形で返却
     } else {
       return error({ statusCode: 400 })
     }
