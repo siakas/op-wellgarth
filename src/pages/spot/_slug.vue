@@ -3,6 +3,7 @@ div
   nav-breadcrumb(
     :name="post.fields.area.fields.name"
     :slug="post.fields.area.fields.slug"
+    dir="area"
   )
 
   h1
