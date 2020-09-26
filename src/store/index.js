@@ -86,6 +86,12 @@ export const getters = {
 
 export const mutations = {
   SET_POSTS (state, payload) {
+    _.map(payload, (i) => {
+      // レーティング指定のないものは 0 をセット
+      if (!i.fields.rating) {
+        i.fields.rating = 0
+      }
+    })
     state.posts = payload
   },
 
