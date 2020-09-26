@@ -43,12 +43,27 @@ export default {
   display: flex;
   flex-wrap: wrap;
 
+  @include mq($until: tablet) {
+    display: block;
+    padding: 0 16px 32px;
+    background: palette('prim');
+  }
+
   &__item {
     width: calc(100% / 5);
+
+    @include mq($until: tablet) {
+      width: 100%;
+    }
   }
 }
 
 .article-item {
+  @include mq($until: tablet) {
+    background: palette('bg');
+    margin: 0 0 16px;
+  }
+
   &__link {
     display: flex;
     flex-direction: column;
@@ -67,10 +82,18 @@ export default {
     order: 2;
     padding: 16px;
     line-height: 1.4;
+
+    @include mq($until: tablet) {
+      padding: 12px;
+    }
   }
 
   &__hdg {
     font-size: 1.8rem;
+
+    @include mq($until: tablet) {
+      font-size: 1.6rem;
+    }
   }
 
   &__info {
