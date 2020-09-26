@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .the-footer {
-  padding: 2em 0;
+  padding: 3em 0 4em;
 
   &__copyright {
     font-size: 1.4rem;

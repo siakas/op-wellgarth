@@ -1,7 +1,7 @@
 // contentful にアクセスするための設定
 import client from '@/plugins/contentful'
 // エントリに画像登録がない場合のデフォルト画像
-import defaultEyeCatch from '@/assets/img/default-eyecatch.jpg'
+import defaultEyeCatch from '@/static/img/noimage.png'
 // lodash
 import _ from 'lodash'
 
