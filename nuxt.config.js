@@ -30,7 +30,7 @@ export default {
     link: [
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap'
       },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
@@ -46,7 +46,7 @@ export default {
    */
   css: [
     {
-      src: '@@/node_modules/sanitize.css/sanitize.css',
+      src: '@@/node_modules/normalize.css/normalize.css',
       lang: 'css'
     },
     '@/assets/scss/base.scss'
