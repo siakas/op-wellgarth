@@ -1,7 +1,7 @@
 const client = require('./src/plugins/contentful').default
 
 // サイトタイトル
-const siteTitle = 'Kyoto Star Spot'
+const siteTitle = 'The Kyoto Star Spot'
 
 export default {
   mode: 'universal',
@@ -51,6 +51,14 @@ export default {
     },
     '@/assets/scss/base.scss'
   ],
+  styleResources: {
+    scss: [
+      '@/assets/scss/function/_palette.scss',
+      '@/assets/scss/foundation/_color.scss',
+      '@/assets/scss/foundation/_easing.scss',
+      '@/assets/scss/foundation/_mq.scss'
+    ]
+  },
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
