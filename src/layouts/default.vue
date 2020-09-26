@@ -1,10 +1,9 @@
 <template lang="pug">
 div.l-page
-  header.l-header
+  the-header
 
-  div.l-content
-    main.l-main
-      nuxt
+  main
+    nuxt
 
-  footer.l-footer
+  the-footer
 </template>

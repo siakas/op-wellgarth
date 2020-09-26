@@ -4,7 +4,7 @@ html {
   padding: 0;
   tab-size: 4;
   font-size: 62.5%;
-  line-height: 1.55;
+  line-height: 1.7;
   -webkit-tap-highlight-color: transparent; // 標準化予定のない独自プロパティ
   text-size-adjust: 100%;
   @extend ._u-word-wrap;
@@ -20,6 +20,7 @@ body {
   font-size: 1.6rem;
   color: palette('text');
   background: palette('bg');
+  font-family: "Open Sans", sans-serif;
 }
 
 a {
