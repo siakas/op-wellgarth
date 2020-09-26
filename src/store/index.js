@@ -1,7 +1,7 @@
 // contentful にアクセスするための設定
 import client from '@/plugins/contentful'
 // エントリに画像登録がない場合のデフォルト画像
-import defaultEyeCatch from '@/assets/img/default-eyecatch.jpg'
+import defaultEyeCatch from '@/static/img/noimage.png'
 // lodash
 import _ from 'lodash'
 
@@ -42,6 +42,15 @@ export const getters = {
   },
 
   /**
+   * レーティングに一致するスポット一覧を収集するメソッド
+   */
+  relatedRatingPosts: (state, getters) => (star) => {
+    return _.filter(getters.posts, (post) => {
+      return post.fields.rating === star
+    })
+  },
+
+  /**
    * デフォルトアイキャッチの設定
    */
   // 通常、getter は文字列や配列、オブジェクトの形式で使われるが、
@@ -66,7 +75,7 @@ export const getters = {
     }
   },
   /**
-   * 下書きフラグのチェック
+   * 下書きフラグをチェックするメソッド
    */
   isDraft: () => (post) => {
     if (post.fields.draft) {
@@ -77,6 +86,12 @@ export const getters = {
 
 export const mutations = {
   SET_POSTS (state, payload) {
+    _.map(payload, (i) => {
+      // レーティング指定のないものは 0 をセット
+      if (!i.fields.rating) {
+        i.fields.rating = 0
+      }
+    })
     state.posts = payload
   },
 
