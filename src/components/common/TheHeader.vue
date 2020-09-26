@@ -1,5 +1,5 @@
 <template lang="pug">
-header.the-header
+header.the-header(:class="styleType")
   h1.the-header__title
     nuxt-link(to="/")
       | THE KYOTO STAR SPOT
@@ -7,7 +7,12 @@ header.the-header
 
 <script>
 export default {
-
+  props: {
+    styleType: {
+      type: String,
+      default: ''
+    },
+  },
 }
 </script>
 
@@ -42,6 +47,21 @@ export default {
       &:focus {
         opacity: 0.65;
       }
+    }
+  }
+
+  // スポット詳細透過用
+  &.-alpha {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    z-index: 500;
+
+    .the-header__title {
+      opacity: 0.7;
+      text-shadow: 0px 0px 5px rgba(#000, 0.5);
     }
   }
 }
