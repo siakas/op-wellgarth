@@ -14,10 +14,18 @@ export default {
 .the-footer {
   padding: 3em 0 4em;
 
+  @include mq($until: tablet) {
+    padding: 1.6em 0 2.4em;
+  }
+
   &__copyright {
     font-size: 1.4rem;
     line-height: 1;
     text-align: center;
+
+    @include mq($until: tablet) {
+      font-size: 1.2rem;
+    }
 
     small {
       font-size: inherit;

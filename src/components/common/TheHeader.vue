@@ -27,6 +27,11 @@ export default {
     line-height: 1.2;
     letter-spacing: 0.2em;
 
+    @include mq($until: tablet) {
+      font-size: 1.6rem;
+      letter-spacing: 0.1em;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
