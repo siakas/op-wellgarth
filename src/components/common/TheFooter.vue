@@ -1,12 +1,17 @@
 <template lang="pug">
-footer.the-footer
+footer.the-footer(:class="styleType")
   p.the-footer__copyright
     small © 2020 zimin
 </template>
 
 <script>
 export default {
-
+  props: {
+    styleType: {
+      type: String,
+      default: ''
+    },
+  },
 }
 </script>
 
@@ -32,6 +37,12 @@ export default {
       font-weight: normal;
       font-style: normal;
     }
+  }
+
+  // スポット詳細用
+  &.-brown {
+    background: palette('prim');
+    color: #fff;
   }
 }
 </style>
