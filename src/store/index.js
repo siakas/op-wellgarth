@@ -42,6 +42,15 @@ export const getters = {
   },
 
   /**
+   * レーティングに一致するスポット一覧を収集するメソッド
+   */
+  relatedRatingPosts: (state, getters) => (star) => {
+    return _.filter(getters.posts, (post) => {
+      return post.fields.rating === star
+    })
+  },
+
+  /**
    * デフォルトアイキャッチの設定
    */
   // 通常、getter は文字列や配列、オブジェクトの形式で使われるが、
@@ -66,7 +75,7 @@ export const getters = {
     }
   },
   /**
-   * 下書きフラグのチェック
+   * 下書きフラグをチェックするメソッド
    */
   isDraft: () => (post) => {
     if (post.fields.draft) {

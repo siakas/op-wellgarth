@@ -24,6 +24,11 @@ div
           nuxt-link(:to="`/tags/${tag.fields.slug}`")
             | {{ tag.fields.name }} {{ tag.fields.slug }}
 
+      //- レーティングを出力
+      p
+        nuxt-link(:to="`/rating/${post.fields.rating}`")
+          | 星{{ post.fields.rating }}つ
+
       hr(style="display:block")
 
   //- div
