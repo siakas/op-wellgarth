@@ -3,6 +3,10 @@ header.the-header(:class="styleType")
   h1.the-header__title
     nuxt-link(to="/")
       | THE KYOTO STAR SPOT
+
+  drawer-button
+  drawer-backdrop
+
 </template>
 
 <script>

@@ -28,10 +28,6 @@ export default {
     line-height: 1;
     text-align: center;
 
-    @include mq($until: tablet) {
-      font-size: 1.2rem;
-    }
-
     small {
       font-size: inherit;
       font-weight: normal;
