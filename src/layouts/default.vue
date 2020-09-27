@@ -14,6 +14,8 @@ div.l-page
     the-footer(:style-type="'-brown'")
   template(v-else)
     the-footer
+
+  drawer-menu
 </template>
 
 <script>
@@ -32,5 +34,9 @@ export default {
 <style lang="scss" scoped>
 .l-page {
   position: relative;
+}
+
+main {
+  padding: 0 0 48px;
 }
 </style>

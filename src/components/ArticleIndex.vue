@@ -45,7 +45,7 @@ export default {
 
   @include mq($until: tablet) {
     display: block;
-    padding: 0 16px 32px;
+    padding: 16px 16px 1px;
     background: palette('prim');
   }
 

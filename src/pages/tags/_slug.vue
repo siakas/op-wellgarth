@@ -1,19 +1,7 @@
 <template lang="pug">
 div
-  nav-breadcrumb(
-    name="タグ一覧"
-    dir="tags"
-  )
-
-  h1
-    | {{ tag.fields.name }}
-
-  ul
-    li(v-for="post in tagPosts" :key="post.sys.id")
-      | {{ post.fields.title }}
-      br
-      | {{ post.fields.area.fields.name }}
-      hr(style="display:block")
+  hdg-index(:title="tag.fields.name")
+  article-index(:posts="tagPosts")
 </template>
 
 <script>
