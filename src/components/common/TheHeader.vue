@@ -4,8 +4,7 @@ header.the-header(:class="styleType")
     nuxt-link(to="/")
       | THE KYOTO STAR SPOT
 
-  drawer-button
-  //- drawer-menu
+  //- drawer-button
   drawer-backdrop
 
 </template>

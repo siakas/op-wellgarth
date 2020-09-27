@@ -20,6 +20,19 @@ article
 
     hdg-lv-2 アクセス
 
+    post-map(
+      :lat="post.fields.location.lat",
+      :lon="post.fields.location.lon"
+    )
+
+    post-map-mobile(:url="post.fields.googleMap")
+
+    //- サイン
+    p.post-sign
+      | Text by:
+      |
+      a(href='mailto:sansyo@gmail.com') zimin
+
   back-top
 
 //- div
@@ -79,23 +92,35 @@ export default {
     margin: 24px auto 40px;
   }
 
-  /deep/ p {
-    margin: 1.2em 0;
-  }
+  // マークダウン部分が展開される要素
+  > div:not([class]) {
+    /deep/ p {
+      margin: 1.2em 0;
+    }
 
-  /deep/ ul {
-    list-style: disc;
-    margin: 1.2em 0 1.2em 1.6em;
+    /deep/ ul {
+      list-style: disc;
+      margin: 1.2em 0 1.2em 1.6em;
 
-    > li {
-      list-style: inherit;
+      > li {
+        list-style: inherit;
+      }
     }
   }
 
   .hdg-lv2 {
-    & + * {
+    & + p:not([class]) {
       margin-top: 8px;
     }
   }
+}
+
+.post-sign {
+  margin: 3em 0;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #adaaa5;
+  font-weight: bold;
+  font-family: "Source Sans Pro", sans-serif;
 }
 </style>

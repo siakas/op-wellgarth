@@ -27,6 +27,12 @@ export default {
 
 <style lang="scss" scoped>
 .post-tel {
+  margin: 8px 0 0;
+
+  @include mq($until: tablet) {
+    margin: 0;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
