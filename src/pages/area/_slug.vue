@@ -1,20 +1,7 @@
 <template lang="pug">
 div
-  nav-breadcrumb(
-    :name="area.fields.name"
-    :slug="area.fields.slug"
-    dir="area"
-  )
-
-  h1
-    | {{ area.fields.name }}
-
-  ul
-    li(v-for="post in areaPosts" :key="post.sys.id")
-      | {{ post.fields.title }}
-      br
-      | {{ post.fields.area.fields.name }}
-      hr(style="display:block")
+  hdg-index(:title="area.fields.name")
+  article-index(:posts="areaPosts")
 </template>
 
 <script>
@@ -45,16 +32,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.breadcrumb {
-  margin: 0 0 45px;
-  ol {
-    display: flex;
-    li:not(:last-child) {
-      &::after {
-        content: '>';
-        margin: 0 0.8em;
-      }
-    }
-  }
-}
+
 </style>

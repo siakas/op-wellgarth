@@ -1,22 +1,15 @@
 <template lang="pug">
 div
-  //- nav-breadcrumb(
-  //-   name="タグ一覧"
-  //-   dir="tags"
-  //- )
+  template(v-if="star === 3")
+    hdg-index(title="★★★")
+  template(v-else-if="star === 2")
+    hdg-index(title="★★")
+  template(v-else-if="star === 1")
+    hdg-index(title="★")
+  template(v-else="star === 0")
+    hdg-index(title="未訪問")
 
-  h1
-    | 星{{ star }}つのスポット
-
-  ul
-    li(v-for="post in posts" :key="post.sys.id")
-      | {{ post.fields.title }}
-      br
-      | {{ post.fields.area.fields.name }}
-      hr(style="display:block")
-
-  p
-    nuxt-link(to="/") トップへ
+  article-index(:posts="staredPosts")
 </template>
 
 <script>
@@ -27,7 +20,7 @@ export default {
     }
   },
   computed: {
-    posts () {
+    staredPosts () {
       return this.$store.getters.relatedRatingPosts(this.star)
     }
   },

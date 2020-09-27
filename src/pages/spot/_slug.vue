@@ -1,7 +1,10 @@
 <template lang="pug">
 article
   post-eyecatch(:post="post")
+
   post-header(:title="post.fields.title")
+
+  post-meta(:post="post")
 
   div.post-body
     div(v-html="$md.render(post.fields.description)")
@@ -119,7 +122,7 @@ export default {
   margin: 3em 0;
   text-align: center;
   font-size: 1.4rem;
-  color: #adaaa5;
+  color: palette('text', 'gray');
   font-weight: bold;
   font-family: "Source Sans Pro", sans-serif;
 }
