@@ -1,9 +1,14 @@
 <template lang="pug">
 div
   transition(name="fade")
+    //- div.drawer-backdrop(
+    //-   v-show="isActive",
+    //-   @click="toggleDrawer",
+    //-   :aria-hidden="String(!isActive)"
+    //- )
     div.drawer-backdrop(
-      v-if="isActive",
-      @click="toggleDrawer"
+      @click="toggleDrawer",
+      :aria-hidden="String(!isActive)"
     )
 </template>
 
