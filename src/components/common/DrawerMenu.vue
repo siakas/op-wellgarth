@@ -1,11 +1,8 @@
 <template lang="pug">
 div
   transition(name="slide")
-    //- aside.drawer-menu(
-    //-   v-show="isActive",
-    //-   :aria-hidden="String(!isActive)"
-    //- )
     aside.drawer-menu(
+      v-show="isActive",
       :aria-hidden="String(!isActive)"
     )
       ul.drawer-nav
@@ -15,46 +12,61 @@ div
             :class="{ '-active': activeTab === 'area' }"
           )
             | エリア
-          div.inner(v-show="activeTab === 'area'")
-            ul.innernav
-              li(v-for="area in areas", :key="area.sys.id")
-                nuxt-link(:to="`/area/${area.fields.slug}`")
-                  | {{ area.fields.name }}
-                  | （{{ countPostArea(area) }}）
+          collapse-transition(:duration="250")
+            div.inner(v-show="activeTab === 'area'")
+              ul.innernav
+                li(v-for="area in areas", :key="area.sys.id")
+                  nuxt-link(:to="`/area/${area.fields.slug}`")
+                    | {{ area.fields.name }}
+                    | （{{ countPostArea(area) }}）
         li
           button.toggle(
             @click="makeActiveTab('tag')",
             :class="{ '-active': activeTab === 'tag' }"
           )
             | タグ
-          div.inner(v-show="activeTab === 'tag'")
-            ul.innernav
-              li(v-for="tag in tags", :key="tag.sys.id")
-                nuxt-link(:to="`/tags/${tag.fields.slug}`")
-                  | {{ tag.fields.name }}
-                  | （{{ countPostTag(tag) }}）
-        //- li
-        //-   button.toggle(
-        //-     @click="makeActiveTab('stared')",
-        //-     :class="{ '-active': activeTab === 'stared' }"
-        //-   )
-        //-     | お気に入り
-        //-   div.inner(v-show="activeTab === 'stared'")
-        //-     ul.innernav
-        //-       li
-        //-         a(href='#') ★★★（4）
-        //-       li
-        //-         a(href='#') ★★（4）
-        //-       li
-        //-         a(href='#') ★（4）
-        //-       li
-        //-         a(href='#') 未訪問（4）
+          collapse-transition(:duration="250")
+            div.inner(v-show="activeTab === 'tag'")
+              ul.innernav
+                li(v-for="tag in tags", :key="tag.sys.id")
+                  nuxt-link(:to="`/tags/${tag.fields.slug}`")
+                    | {{ tag.fields.name }}
+                    | （{{ countPostTag(tag) }}）
+        li
+          button.toggle(
+            @click="makeActiveTab('stared')",
+            :class="{ '-active': activeTab === 'stared' }"
+          )
+            | お気に入り
+          collapse-transition(:duration="250")
+            div.inner(v-show="activeTab === 'stared'")
+              ul.innernav
+                li
+                  nuxt-link(:to="'/rating/3'")
+                    | ★★★
+                    |（{{ countPostStared(3) }}）
+                li
+                  nuxt-link(:to="'/rating/2'")
+                    | ★★
+                    |（{{ countPostStared(2) }}）
+                li
+                  nuxt-link(:to="'/rating/1'")
+                    | ★
+                    |（{{ countPostStared(1) }}）
+                li
+                  nuxt-link(:to="'/rating/0'")
+                    | 未訪問
+                    |（{{ countPostStared(0) }}）
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import { CollapseTransition } from 'vue2-transitions'
 
 export default {
+  components: {
+    CollapseTransition,
+  },
   data () {
     return {
       activeTab: ''
@@ -74,10 +86,24 @@ export default {
         return this.$store.getters.relatedAreaPosts(area).length
       }
     },
-    // エリア記事の件数
+    // タグ記事の件数
     countPostTag () {
       return (tag) => {
         return this.$store.getters.relatedTagPosts(tag).length
+      }
+    },
+    // お気に入り記事の件数
+    countPostStared () {
+      return (star) => {
+        return this.$store.getters.relatedRatingPosts(star).length
+      }
+    }
+  },
+  watch: {
+    // ページ遷移時にアコーディオンをたたむ
+    '$route' () {
+      if (process.client && this.activeTab) {
+        this.activeTab = ''
       }
     }
   },
@@ -143,7 +169,7 @@ export default {
       display: block;
       background: #fff;
       position: absolute;
-      transition: transform 0.3s $ease-out-quint;
+      transition: transform 0.25s $ease-out-quint;
     }
 
     &::before {
