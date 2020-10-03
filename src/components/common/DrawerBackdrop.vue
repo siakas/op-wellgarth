@@ -2,8 +2,9 @@
 div
   transition(name="fade")
     div.drawer-backdrop(
-      v-if="isActive",
-      @click="toggleDrawer"
+      v-show="isActive",
+      @click="toggleDrawer",
+      :aria-hidden="String(!isActive)"
     )
 </template>
 
