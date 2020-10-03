@@ -17,7 +17,8 @@
     "contentful": "^7.14.6",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.14.0",
-    "sass-mq": "^5.0.1"
+    "sass-mq": "^5.0.1",
+    "vue2-transitions": "^0.3.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

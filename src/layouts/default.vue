@@ -19,6 +19,8 @@ div.l-page
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   computed: {
     page () {
@@ -27,6 +29,22 @@ export default {
         name: this.$route.name
       }
     },
+    ...mapGetters('drawer', [
+      'isActive'
+    ])
+  },
+  watch: {
+    // ページ遷移時にドロワーを非表示
+    '$route' () {
+      if (process.client && this.isActive) {
+        this.toggleDrawer()
+      }
+    }
+  },
+  methods: {
+    ...mapActions('drawer', [
+      'toggleDrawer'
+    ])
   },
 }
 </script>
