@@ -43,15 +43,15 @@ div
               ul.innernav
                 li
                   nuxt-link(:to="'/rating/3'")
-                    | ★★★
+                    | Great
                     |（{{ countPostStared(3) }}）
                 li
                   nuxt-link(:to="'/rating/2'")
-                    | ★★
+                    | Good
                     |（{{ countPostStared(2) }}）
                 li
                   nuxt-link(:to="'/rating/1'")
-                    | ★
+                    | Not bad
                     |（{{ countPostStared(1) }}）
                 li
                   nuxt-link(:to="'/rating/0'")
