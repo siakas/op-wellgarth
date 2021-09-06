@@ -100,10 +100,16 @@ export default {
     margin: 4px 0 0;
     font-size: 1.3rem;
     display: flex;
+    line-height: 1.6;
+
+    @include mq($until: tablet) {
+      font-size: 1.2rem;
+    }
   }
 
   &__area {
     display: flex;
+    white-space: nowrap;
 
     &::after {
       content: '／';
@@ -113,8 +119,20 @@ export default {
 
   &__tags {
     display: flex;
+    flex-wrap: wrap;
+
+    @include mq($until: tablet) {
+      display: block;
+    }
 
     > li {
+      white-space: nowrap;
+
+      @include mq($until: tablet) {
+        white-space: normal;
+        display: inline;
+      }
+
       &:not(:last-child) {
         &::after {
           content: ',';

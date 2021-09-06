@@ -35,7 +35,7 @@ export default {
   margin: 24px auto;
   padding: 0 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: 1.3rem;
 
   @include mq($until: tablet) {
@@ -64,23 +64,58 @@ export default {
   .rating {
     display: flex;
     margin: 0 1.5em 0 0;
+
+    h2 {
+      white-space: nowrap;
+    }
   }
 
   .area {
+    flex-shrink: 0;
+
+    p {
+      white-space: nowrap;
+    }
+
     a {
       font-weight: bold;
     }
   }
 
   .tags {
+    @include mq($until: tablet) {
+      margin-top: 0.4em;
+    }
+
+    ul {
+      flex-wrap: wrap;
+
+      li {
+        margin-bottom: 0.2em;
+      }
+    }
+
     a {
       font-weight: bold;
     }
   }
 
   .rating {
+    flex-shrink: 0;
+    align-items: center;
+
+    @include mq($until: tablet) {
+      margin-top: 0.4em;
+    }
+
     a {
       text-decoration: none;
+
+      .rating {
+        @include mq($until: tablet) {
+          margin-top: 0;
+        }
+      }
     }
   }
 }
