@@ -1,11 +1,11 @@
 <template lang="pug">
 div
   template(v-if="star === 3")
-    hdg-index(title="★★★")
+    hdg-index(title="Great")
   template(v-else-if="star === 2")
-    hdg-index(title="★★")
+    hdg-index(title="Good")
   template(v-else-if="star === 1")
-    hdg-index(title="★")
+    hdg-index(title="Not bad")
   template(v-else="star === 0")
     hdg-index(title="未訪問")
 
