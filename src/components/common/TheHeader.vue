@@ -2,7 +2,7 @@
 header.the-header(:class="styleType")
   h1.the-header__title
     nuxt-link(to="/")
-      | ベドラック・ナムノイズ
+      | 京都点在覚書
 
   drawer-button
   drawer-backdrop
