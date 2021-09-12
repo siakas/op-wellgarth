@@ -1,7 +1,7 @@
 const client = require('./src/plugins/contentful').default
 
 // サイトタイトル
-const siteTitle = 'The Kyoto Star Spot'
+const siteTitle = '京漫録「ぼんぼやじ」'
 
 export default {
   mode: 'universal',
