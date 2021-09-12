@@ -2,7 +2,7 @@
 header.the-header(:class="styleType")
   h1.the-header__title
     nuxt-link(to="/")
-      | 京漫録「ぼんぼやじ」
+      | ベドラック・ナムノイズ
 
   drawer-button
   drawer-backdrop
@@ -29,12 +29,12 @@ export default {
   height: 72px;
 
   &__title {
-    font-family: "Source Sans Pro", sans-serif;
+    // font-family: "Source Sans Pro", sans-serif;
     font-weight: normal;
     font-size: 2.4rem;
     align-self: center;
     line-height: 1.2;
-    letter-spacing: 0.2em;
+    // letter-spacing: 0.2em;
 
     @include mq($until: tablet) {
       font-size: 1.6rem;
