@@ -2,7 +2,7 @@
 header.the-header(:class="styleType")
   h1.the-header__title
     nuxt-link(to="/")
-      | THE KYOTO STAR SPOT
+      | 京漫録「ぼんぼやじ」
 
   drawer-button
   drawer-backdrop
