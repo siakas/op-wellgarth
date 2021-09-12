@@ -99,10 +99,15 @@ export const mutations = {
   SET_REFERENCE (state, payload) {
     state.areas = []
     state.tags = []
-    state.areas = _.filter(payload, (i) => {
-      return i.sys.contentType.sys.id === 'spotArea'
-    })
-    state.areas = _.sortBy(state.areas, i => i.fields.slug) // state.areas に格納した値を slug の昇順で並べ替え（filter と sortBy をチェーンで書きたい）
+
+    // エリアの値を state に格納
+    // lodash のチェーン記法を使って複数のメソッドをまとめて処理
+    state.areas = _(payload)
+      .filter(i => i.sys.contentType.sys.id === 'spotArea')
+      .sortBy(i => i.fields.slug)
+      .value() // チェーン記法の場合、最後に .value() 中間オブジェクトを返すことがある
+
+    // タグの値を state に格納
     state.tags = _.filter(payload, (i) => {
       return i.sys.contentType.sys.id === 'spotTags'
     })
