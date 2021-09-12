@@ -1,7 +1,7 @@
 const client = require('./src/plugins/contentful').default
 
 // サイトタイトル
-const siteTitle = 'ベドラック・ナムノイズ'
+const siteTitle = '京都点在覚書'
 
 export default {
   mode: 'universal',
