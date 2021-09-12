@@ -102,6 +102,7 @@ export const mutations = {
     state.areas = _.filter(payload, (i) => {
       return i.sys.contentType.sys.id === 'spotArea'
     })
+    state.areas = _.sortBy(state.areas, i => i.fields.slug) // state.areas に格納した値を slug の昇順で並べ替え（filter と sortBy をチェーンで書きたい）
     state.tags = _.filter(payload, (i) => {
       return i.sys.contentType.sys.id === 'spotTags'
     })
