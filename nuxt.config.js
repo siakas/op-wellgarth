@@ -1,7 +1,7 @@
 const client = require('./src/plugins/contentful').default
 
 // サイトタイトル
-const siteTitle = '京漫録「ぼんぼやじ」'
+const siteTitle = 'ベドラック・ナムノイズ'
 
 export default {
   mode: 'universal',
