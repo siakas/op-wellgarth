@@ -37,6 +37,11 @@ export default {
     } else {
       return error({ statusCode: 400 })
     }
+  },
+  head () {
+    return {
+      title: `${this.tag.fields.name}のスポット一覧`
+    }
   }
 }
 </script>
