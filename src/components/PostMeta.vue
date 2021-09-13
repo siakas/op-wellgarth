@@ -14,8 +14,13 @@ div.post-meta
   div.rating
     h2 お気に入り：
     div
-      nuxt-link(:to="`/rating/${post.fields.rating}`")
-        rating-star(:star="post.fields.rating")
+      //- レーティングが 0 の時に本番だとリンク先が undefined になってしまうので明示
+      template(v-if="post.fields.rating === 0")
+        nuxt-link(:to="'/rating/0'")
+          rating-star(:star="post.fields.rating")
+      template(v-else)
+        nuxt-link(:to="`/rating/${post.fields.rating}`")
+          rating-star(:star="post.fields.rating")
 </template>
 
 <script>
