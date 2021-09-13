@@ -82,6 +82,14 @@ export default {
       return error({ statusCode: 400 })
     }
   },
+  head () {
+    return {
+      title: this.post.fields.title,
+      meta: [
+        { hid: 'og:title', name: 'og:title', content: `${this.post.fields.title} | 京都点在覚書` },
+      ]
+    }
+  }
 }
 </script>
 

@@ -24,6 +24,11 @@ export default {
       return this.$store.getters.relatedRatingPosts(this.star)
     }
   },
+  head () {
+    return {
+      title: 'お気に入りのスポット一覧'
+    }
+  }
 }
 </script>
 

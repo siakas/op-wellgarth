@@ -28,6 +28,11 @@ export default {
       return this.$store.getters.relatedAreaPosts(this.area)
     }
   },
+  head () {
+    return {
+      title: `${this.area.fields.name}エリアのスポット一覧`
+    }
+  }
 }
 </script>
 
