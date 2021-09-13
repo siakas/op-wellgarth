@@ -1,7 +1,7 @@
 <template lang="pug">
 footer.the-footer(:class="styleType")
   p.the-footer__copyright
-    small © 2020 zimin
+    small © 2020 siakas
 </template>
 
 <script>

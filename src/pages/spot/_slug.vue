@@ -34,7 +34,7 @@ article
     p.post-sign
       | Text by:
       |
-      a(href='mailto:sansyo@gmail.com') zimin
+      a(href='mailto:sansyo@gmail.com') siakas
 
   back-top
 
