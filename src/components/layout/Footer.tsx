@@ -5,7 +5,7 @@ import { rem } from '@/styles'
 const Footer = () => {
   const styles = {
     base: css`
-      background-color: #50402d;
+      background-color: rgba(var(--color-primary-rgb), 1);
       color: #fff;
       padding: 3em 0 4em;
 

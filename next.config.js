@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    emotion: true,
+    emotion: {
+      autoLabel: 'always',
+      labelFormat: 'test-style__[filename]__[local]',
+    },
   },
 }
 

@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app'
 
 import 'sanitize.css'
 import GlobalStyle from '@/styles/global'
-import '@/styles/globals.css'
 
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'

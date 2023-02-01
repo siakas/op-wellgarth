@@ -7,7 +7,7 @@ import { rem } from '@/styles'
 const Header = () => {
   const styles = {
     base: css`
-      background-color: #50402d;
+      background-color: var(--color-primary);
       color: #fff;
       padding: 1.6em 0;
 

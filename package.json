@@ -14,8 +14,10 @@
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "colord": "^2.9.3",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
+    "lodash-es": "^4.17.21",
     "microcms-js-sdk": "^2.3.2",
     "next": "13.1.6",
     "react": "18.2.0",
@@ -24,6 +26,7 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.6",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-standard-with-typescript": "^33.0.0",
