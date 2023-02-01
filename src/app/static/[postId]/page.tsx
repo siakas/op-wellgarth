@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import parse from 'html-react-parser'
@@ -34,10 +35,9 @@ const StaticDetailPage = async ({
     <div>
       <h1>{post.title}</h1>
       <h2>{time}</h2>
-      {/* <div>{post.content}</div> */}
-      {post.content !== undefined && (
-        <div>{post.content !== undefined && parse(post.content)}</div>
-      )}
+      {post.content !== undefined && <div>{parse(post.content)}</div>}
+
+      <Link href="/static">一覧へ戻る</Link>
     </div>
   )
 }
