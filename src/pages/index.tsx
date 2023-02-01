@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { css } from '@emotion/react'
 import { Inter, Open_Sans } from '@next/font/google'
 
 import styles from '@/styles/Home.module.css'
@@ -9,6 +10,13 @@ const inter = Inter({ subsets: ['latin'] })
 const openSans = Open_Sans({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
+  const emStyles = {
+    pgh: css`
+      color: red;
+      padding: 2rem;
+    `,
+  }
+
   return (
     <>
       <Head>
@@ -19,7 +27,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>
+          <p css={emStyles.pgh}>
             Get started by editing&nbsp;
             <code className={styles.code}>src/pages/index.tsx</code>
           </p>
