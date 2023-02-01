@@ -34,7 +34,10 @@ const StaticDetailPage = async ({
     <div>
       <h1>{post.title}</h1>
       <h2>{time}</h2>
-      <div>{parse(post.content)}</div>
+      {/* <div>{post.content}</div> */}
+      {post.content !== undefined && (
+        <div>{post.content !== undefined && parse(post.content)}</div>
+      )}
     </div>
   )
 }
