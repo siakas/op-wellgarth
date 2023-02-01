@@ -159,14 +159,15 @@
             "position": "before"
           },
           // 非相対パスで記述した内部モジュールのコンポーネントを相対パスモジュールの直前に配置
+          // {
+          //   "pattern": "{[A-Z]*,**/[A-Z]*}",
+          //   "group": "internal",
+          //   "position": "after"
+          // },
+          // `@/libs`, `@/context`, `@/hooks`, `@/utils`, `@/data`, `@/types`,
+          // `@/animations`, `@/layout`, `@/styles` の import をグルーピング
           {
-            "pattern": "{[A-Z]*,**/[A-Z]*}",
-            "group": "internal",
-            "position": "after"
-          },
-          // `@/context`, `@/hooks`, `@/utils`, `@/data`, `@/types`, `@/animations`, `@/layout`, `@/styles` の import をグルーピング
-          {
-            "pattern": "{@/context/**,@/hooks/**,@/utils/**,@/data/**,@/types/**,@/animations/**,@/layout/**,@/styles/**}",
+            "pattern": "{@/libs/**,@/context/**,@/hooks/**,@/utils/**,@/data/**,@/types/**,@/animations/**,@/layout/**,@/styles/**}",
             "group": "internal",
             "position": "before"
           },
