@@ -164,6 +164,18 @@
             "group": "internal",
             "position": "after"
           },
+          // `@/context`, `@/hooks`, `@/utils`, `@/data`, `@/types`, `@/animations`, `@/layout`, `@/styles` の import をグルーピング
+          {
+            "pattern": "{@/context/**,@/hooks/**,@/utils/**,@/data/**,@/types/**,@/animations/**,@/layout/**,@/styles/**}",
+            "group": "internal",
+            "position": "before"
+          },
+          // `@/components`, `@/pages` の import をグルーピング
+          {
+            "pattern": "{@/components/**,@/pages/**}",
+            "group": "internal",
+            "position": "before"
+          },
           // CSS Modules ファイルを一番最後に配置
           {
             "pattern": "./**.module.{scss,css}",
