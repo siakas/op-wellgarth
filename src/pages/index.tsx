@@ -3,25 +3,35 @@ import Link from 'next/link'
 import { map } from 'lodash-es'
 
 import { client } from '@/libs/client'
-import type { Blog } from '@/types/microcms'
+import type { Area, Blog, Category } from '@/types/microcms'
 
 type Props = {
   blogs: Blog[]
+  categories: Category[]
+  areas: Area[]
 }
 
-export const getServerSideProps = async () => {
-  const data = await client.get({
+export const getStaticProps = async () => {
+  const blog = await client.get({
     endpoint: 'blogs',
+  })
+  const category = await client.get({
+    endpoint: 'categories',
+  })
+  const area = await client.get({
+    endpoint: 'areas',
   })
 
   return {
     props: {
-      blogs: data.contents,
+      blogs: blog.contents,
+      categories: category.contents,
+      areas: area.contents,
     },
   }
 }
 
-const Home = ({ blogs }: Props) => {
+const Home = ({ blogs, categories, areas }: Props) => {
   return (
     <>
       <h1>記事一覧</h1>
@@ -29,6 +39,22 @@ const Home = ({ blogs }: Props) => {
         {map(blogs, (post) => (
           <li key={post.id}>
             <Link href={`/spot/${post.id}`}>{post.title}</Link>
+          </li>
+        ))}
+      </ul>
+      <h1>カテゴリ一覧</h1>
+      <ul>
+        {map(categories, (category) => (
+          <li key={category.id}>
+            <Link href={`/category/${category.slug}`}>{category.name}</Link>
+          </li>
+        ))}
+      </ul>
+      <h1>エリア一覧</h1>
+      <ul>
+        {map(areas, (area) => (
+          <li key={area.id}>
+            <Link href={`/area/${area.slug}`}>{area.name}</Link>
           </li>
         ))}
       </ul>
