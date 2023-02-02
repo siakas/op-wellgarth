@@ -14,12 +14,22 @@ type Props = {
 export const getStaticProps = async () => {
   const blog = await client.get({
     endpoint: 'blogs',
+    // 一時的に全件取得するが、最終的にはスクロールローディングで順次取得するようにしたい
+    queries: {
+      limit: 50,
+    },
   })
   const category = await client.get({
     endpoint: 'categories',
+    queries: {
+      limit: 50, // カテゴリは常に全件取得
+    },
   })
   const area = await client.get({
     endpoint: 'areas',
+    queries: {
+      limit: 50, // エリアは常に全件取得
+    },
   })
 
   return {
