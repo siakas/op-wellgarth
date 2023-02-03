@@ -1,15 +1,20 @@
-import type { GetStaticPaths, GetStaticProps } from 'next'
+import type {
+  GetStaticPaths,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+  NextPage,
+} from 'next'
 import Link from 'next/link'
 
 import parse from 'html-react-parser'
 import { map } from 'lodash-es'
 
 import { client } from '@/libs/client'
-import type { Blog, BlogResponse } from '@/types/microcms'
+import type { BlogResponse } from '@/types/microcms'
 
-type Props = {
-  blog: Blog
-}
+// Props の型に InferGetStaticPropsType を指定
+// getStaticProps で return された値をもとに、Page に渡される Props の型を類推してくれる
+type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 // 静的生成のためのパスを指定
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -29,8 +34,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 // データをテンプレートに受け渡す部分の処理を記述
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   const slug = context.params?.slug
+
+  // slug で記事を取得する場合は filter を利用する
+  // また、id で記事指定するのとは違い、配列で返ってくる点に注意
   const data = await client.get<BlogResponse>({
     endpoint: 'blogs',
     queries: {
@@ -40,17 +48,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      blog: data.contents[0],
+      blog: data.contents[0], // データが配列で返ってくるので 1 件目のみを props として渡す
     },
   }
 }
 
-const BlogId = ({ blog }: Props) => {
+// ページコンポーネント
+const BlogId: NextPage<Props> = ({ blog }) => {
   return (
     <main>
       <h1>{blog.title}</h1>
 
-      {blog.eyecatch && (
+      {blog.eyecatch !== undefined && (
         <div>
           <img src={blog.eyecatch.url} alt="" width={600} />
         </div>
