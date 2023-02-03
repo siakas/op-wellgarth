@@ -48,7 +48,7 @@ const Home = ({ blogs, categories, areas }: Props) => {
       <ul>
         {map(blogs, (post) => (
           <li key={post.id}>
-            <Link href={`/spot/${post.id}`}>{post.title}</Link>
+            <Link href={`/spot/${post.slug}`}>{post.title}</Link>
           </li>
         ))}
       </ul>

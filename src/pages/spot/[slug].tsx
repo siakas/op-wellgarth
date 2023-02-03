@@ -5,7 +5,7 @@ import parse from 'html-react-parser'
 import { map } from 'lodash-es'
 
 import { client } from '@/libs/client'
-import type { Blog } from '@/types/microcms'
+import type { Blog, BlogResponse } from '@/types/microcms'
 
 type Props = {
   blog: Blog
@@ -13,12 +13,14 @@ type Props = {
 
 // 静的生成のためのパスを指定
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.get({
+  const data = await client.get<BlogResponse>({
     endpoint: 'blogs',
-    queries: { limit: 50 },
+    queries: {
+      limit: 50,
+    },
   })
 
-  const paths = map(data.contents, (i) => `/spot/${i.id}`)
+  const paths = map(data.contents, (i) => `/spot/${i.slug}`)
 
   return {
     paths,
@@ -28,16 +30,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 // データをテンプレートに受け渡す部分の処理を記述
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context.params?.id
-  const idExceptArray = id instanceof Array ? id[0] : id
-  const data = await client.get({
+  const slug = context.params?.slug
+  const data = await client.get<BlogResponse>({
     endpoint: 'blogs',
-    contentId: idExceptArray,
+    queries: {
+      filters: `slug[equals]${slug}`,
+    },
   })
 
   return {
     props: {
-      blog: data,
+      blog: data.contents[0],
     },
   }
 }

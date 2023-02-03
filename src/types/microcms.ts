@@ -4,6 +4,7 @@ import type { MicroCMSDate, MicroCMSImage } from 'microcms-js-sdk'
 export type Blog = {
   id: string
   title: string
+  slug: string
   content?: string
   holiday?: string
   time?: string
