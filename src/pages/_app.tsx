@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 
 import 'sanitize.css'
 import GlobalStyle from '@/styles/global'
@@ -10,6 +11,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       <Header />
       <Component {...pageProps} />
       <Footer />
