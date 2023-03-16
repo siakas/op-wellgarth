@@ -10,15 +10,10 @@ const BreadcrumbNav: FC = () => {
       mb={8}
     >
       <BreadcrumbItem>
-        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        <BreadcrumbLink href="/">スポット一覧</BreadcrumbLink>
       </BreadcrumbItem>
-
       <BreadcrumbItem>
-        <BreadcrumbLink href="#">About</BreadcrumbLink>
-      </BreadcrumbItem>
-
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href="#">Contact</BreadcrumbLink>
+        <BreadcrumbLink href="#">カテゴリやエリアなど</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
   )

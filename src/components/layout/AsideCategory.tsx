@@ -1,35 +1,35 @@
 import NextLink from 'next/link'
 import type { FC } from 'react'
-import { Box, Link } from '@chakra-ui/react'
+import { Box, Flex, Link } from '@chakra-ui/react'
+import type { Category } from '@/types/microcms'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 
-const AsideCategory: FC = () => {
+type AsideCategoryProps = {
+  categories: Category[]
+}
+
+const AsideCategory: FC<AsideCategoryProps> = ({ categories = [] }) => {
   return (
     <Box mb={12}>
       <HeadingBgGray>カテゴリ</HeadingBgGray>
 
-      <Box as="ul">
-        <Box as="li" borderBottom="1px solid #eee">
-          <Link as={NextLink} href="#" display="block" p="12px 10px">
-            テキストテキストテキストテキスト
-          </Link>
-        </Box>
-        <Box as="li" borderBottom="1px solid #eee">
-          <Link as={NextLink} href="#" display="block" p="12px 10px">
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </Link>
-        </Box>
-        <Box as="li" borderBottom="1px solid #eee">
-          <Link as={NextLink} href="#" display="block" p="12px 10px">
-            テキストテキストテキストテキスト
-          </Link>
-        </Box>
-        <Box as="li" borderBottom="1px solid #eee">
-          <Link as={NextLink} href="#" display="block" p="12px 10px">
-            テキストテキストテキストテキスト
-          </Link>
-        </Box>
-      </Box>
+      <Flex as="ul" flexWrap="wrap" fontSize="sm" gap="8px">
+        {categories.map((category) => (
+          <Box key={category.id} as="li">
+            <Link
+              as={NextLink}
+              href={`/category/${category.id}`}
+              display="block"
+              p={2}
+              bg="blackAlpha.100"
+              borderRadius={4}
+              _hover={{ textDecoration: 'none', bg: 'blue.100' }}
+            >
+              {category.name}
+            </Link>
+          </Box>
+        ))}
+      </Flex>
     </Box>
   )
 }
