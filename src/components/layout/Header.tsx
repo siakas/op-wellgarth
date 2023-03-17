@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react'
+import { siteConfig } from '@@/site.config'
 
 const Header: FC = () => {
   return (
@@ -12,8 +13,8 @@ const Header: FC = () => {
       borderColor="gray.200"
     >
       <Box>
-        <Text fontSize="xl" fontWeight="bold">
-          Your Logo
+        <Text fontSize="xl" fontWeight="bold" textTransform="uppercase">
+          {siteConfig.siteMeta.title}
         </Text>
       </Box>
       <Spacer />

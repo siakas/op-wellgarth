@@ -36,3 +36,28 @@ export const getCategories = async () => {
 
   return res
 }
+
+// お気に入りスポット一覧を取得
+export const getPickupSpots = async () => {
+  const res = await client.getList<Spot>({
+    endpoint: 'blogs',
+    queries: {
+      limit: 5,
+      filters: 'isStarred[equals]true',
+    },
+  })
+
+  return res
+}
+
+// 最新のスポット一覧を取得（最大 5 件）
+export const getLatestSpots = async () => {
+  const res = await client.getList<Spot>({
+    endpoint: 'blogs',
+    queries: {
+      limit: 5,
+    },
+  })
+
+  return res
+}

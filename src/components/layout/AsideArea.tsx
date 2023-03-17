@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import type { FC } from 'react'
-import { Box, Link } from '@chakra-ui/react'
+import { Box, Flex, Link } from '@chakra-ui/react'
 import type { Area } from '@/types/microcms'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 
@@ -13,20 +13,23 @@ const AsideArea: FC<AsideAreaProps> = ({ areas = [] }) => {
     <Box mb={12}>
       <HeadingBgGray>エリア</HeadingBgGray>
 
-      <Box as="ul">
+      <Flex as="ul" flexWrap="wrap" fontSize="sm" gap="8px">
         {areas.map((area) => (
-          <Box key={area.id} as="li" borderBottom="1px solid #eee">
+          <Box key={area.id} as="li">
             <Link
               as={NextLink}
               href={`/area/${area.id}`}
               display="block"
-              p="12px 10px"
+              p={2}
+              bg="blackAlpha.100"
+              borderRadius={4}
+              _hover={{ textDecoration: 'none', bg: 'blue.100' }}
             >
               {area.name}
             </Link>
           </Box>
         ))}
-      </Box>
+      </Flex>
     </Box>
   )
 }
