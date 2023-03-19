@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import type { Area, Category } from '@/types/microcms'
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
-import { Box, Flex, Link } from '@chakra-ui/react'
-import NextLink from 'next/link'
+import { Box, Flex } from '@chakra-ui/react'
+import PagerLink from '@/components/ui/PagerLink'
 
 type PagerProps = {
   currentPage: number
@@ -28,10 +28,6 @@ const Pager: FC<PagerProps> = ({
   }
 
   return (
-    // ToDo：同じスタイルを複数の箇所で繰り返し書いており冗長になっているのを解消したい
-    // ・問題点：これが Chakra UI を利用することの弊害なのか、Chakra UI を利用しても解決しうる問題なのか、ChatGPT に相談したい
-    // ・問題点：_hover 時のスタイルにも三項演算子などで条件分岐のスタイルを定義したいが、定義方法がわからない
-
     <Box py={10}>
       <Flex
         as="ul"
@@ -43,19 +39,11 @@ const Pager: FC<PagerProps> = ({
         {/* 最初のページでなければ左矢印を表示 */}
         {currentPage > 1 && (
           <Box as="li" mx={2}>
-            <Link
-              as={NextLink}
-              href={getPath(currentPage - 1)}
-              w={10}
-              h={10}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              textDecoration="none"
-              _hover={{ color: 'blue.500' }}
-            >
+            {/* リンクコンポーネントのスタイルが共通するので、PagerLink として Chakra の props を継承したコンポーネントを作成した */}
+            {/* これにより共通するスタイルの props の繰り返しの記述を回避でき、全体のコードをシンプルに保てる */}
+            <PagerLink href={getPath(currentPage - 1)}>
               <ChevronLeftIcon w={6} h={6} />
-            </Link>
+            </PagerLink>
           </Box>
         )}
 
@@ -72,20 +60,16 @@ const Pager: FC<PagerProps> = ({
                 borderRadius={5}
                 bg={isActive ? 'blue.600' : ''}
               >
-                <Link
-                  as={NextLink}
+                <PagerLink
                   href={getPath(page + 1)}
-                  w={10}
-                  h={10}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
                   color={isActive ? 'white' : ''}
                   fontWeight={isActive ? 'bold' : ''}
-                  _hover={{ textDecoration: 'none' }}
+                  _hover={{
+                    color: isActive ? 'white' : 'blue.500',
+                  }}
                 >
                   {page + 1}
-                </Link>
+                </PagerLink>
               </Box>
             )
           })}
@@ -115,18 +99,9 @@ const Pager: FC<PagerProps> = ({
         {/* 最後のページでなければ左矢印を表示 */}
         {currentPage < pager.length && (
           <Box as="li" mx={2}>
-            <Link
-              as={NextLink}
-              href={getPath(currentPage + 1)}
-              w={10}
-              h={10}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              _hover={{ textDecoration: 'none', color: 'blue.500' }}
-            >
+            <PagerLink href={getPath(currentPage + 1)}>
               <ChevronRightIcon w={6} h={6} />
-            </Link>
+            </PagerLink>
           </Box>
         )}
       </Flex>
