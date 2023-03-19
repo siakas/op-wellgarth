@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import { ChakraProvider } from '@chakra-ui/react'
+import Head from 'next/head'
 import GlobalStyle from '@/styles/global'
 import BaseLayout from '@/components/layout/BaseLayout'
 import { siteConfig } from '@@/site.config'

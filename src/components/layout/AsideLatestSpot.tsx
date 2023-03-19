@@ -1,7 +1,7 @@
-import NextLink from 'next/link'
 import type { FC } from 'react'
-import { Box, Link } from '@chakra-ui/react'
 import type { Spot } from '@/types/microcms'
+import { Box, Link } from '@chakra-ui/react'
+import NextLink from 'next/link'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 
 type AsideLatestSpotProps = {

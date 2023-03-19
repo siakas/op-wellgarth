@@ -1,7 +1,7 @@
-import NextLink from 'next/link'
 import type { FC } from 'react'
-import { Grid, GridItem, Image, Link, Text } from '@chakra-ui/react'
 import type { Spot } from '@/types/microcms'
+import { Grid, GridItem, Image, Link, Text } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 type SpotsListProps = {
   spots: Spot[]

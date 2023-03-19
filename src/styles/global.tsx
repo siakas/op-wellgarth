@@ -27,12 +27,6 @@ const GlobalStyle = () => {
       text-decoration: none;
       background-color: transparent;
       color: inherit;
-
-      &:hover,
-      &:active,
-      &:focus {
-        text-decoration: underline;
-      }
     }
 
     img,

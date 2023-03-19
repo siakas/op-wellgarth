@@ -1,7 +1,7 @@
-import NextLink from 'next/link'
 import type { FC } from 'react'
-import { Box, Flex, Link } from '@chakra-ui/react'
 import type { Area } from '@/types/microcms'
+import { Box, Flex, Link } from '@chakra-ui/react'
+import NextLink from 'next/link'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 
 type AsideAreaProps = {

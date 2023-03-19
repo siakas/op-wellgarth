@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react'
+import Link from 'next/link'
 import { siteConfig } from '@@/site.config'
 
 const Header: FC = () => {
@@ -13,8 +14,8 @@ const Header: FC = () => {
       borderColor="gray.200"
     >
       <Box>
-        <Text fontSize="xl" fontWeight="bold" textTransform="uppercase">
-          {siteConfig.siteMeta.title}
+        <Text fontSize="x-large" fontWeight="bold" textTransform="uppercase">
+          <Link href="/">{siteConfig.siteMeta.title}</Link>
         </Text>
       </Box>
       <Spacer />

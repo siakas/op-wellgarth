@@ -1,6 +1,11 @@
-import type { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
-import type { Area, Category, Spot } from '@/types/microcms'
-import { getContents } from '@/libs'
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+  NextPage,
+} from 'next'
+import { getContents, getSpotsByFilter } from '@/libs'
 import Aside from '@/components/layout/Aside'
 import AsideArea from '@/components/layout/AsideArea'
 import AsideCategory from '@/components/layout/AsideCategory'
@@ -11,15 +16,31 @@ import Main from '@/components/layout/Main'
 import BreadcrumbNav from '@/components/ui/BreadcrumbNav'
 import Pager from '@/components/ui/Pager'
 import SpotsList from '@/components/ui/SpotsList'
+import { siteConfig } from '@@/site.config'
 
-type HomeProps = {
-  currentPage: number
-  spots: Spot[]
-  pager: number[]
-  areas: Area[]
-  categories: Category[]
-  pickupSpots: Spot[]
-  latestSpots: Spot[]
+// Props の型に InferGetStaticPropsType を指定
+// getStaticProps で return された値をもとに、Page に渡される Props の型を類推してくれる
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const limit: number =
+    typeof siteConfig.defaultLimit === 'string'
+      ? parseInt(siteConfig.defaultLimit, 10)
+      : siteConfig.defaultLimit
+
+  const { pager } = await getSpotsByFilter(limit, 1)
+  const paths = pager.map((page) => {
+    return {
+      params: {
+        id: (page + 1).toString(),
+      },
+    }
+  })
+
+  return {
+    paths,
+    fallback: false,
+  }
 }
 
 export const getStaticProps: GetStaticProps = async (
@@ -29,7 +50,7 @@ export const getStaticProps: GetStaticProps = async (
   const page: number = pageId !== undefined ? parseInt(pageId as string, 10) : 1
 
   const { spots, pager, areas, categories, pickupSpots, latestSpots } =
-    await getContents()
+    await getContents(page)
 
   return {
     props: {
@@ -41,11 +62,10 @@ export const getStaticProps: GetStaticProps = async (
       pickupSpots,
       latestSpots,
     },
-    revalidate: 60,
   }
 }
 
-const Home: NextPage<HomeProps> = ({
+const Page: NextPage<PageProps> = ({
   currentPage,
   spots,
   pager,
@@ -74,4 +94,4 @@ const Home: NextPage<HomeProps> = ({
   )
 }
 
-export default Home
+export default Page

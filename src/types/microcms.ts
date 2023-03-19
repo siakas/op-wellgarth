@@ -1,4 +1,8 @@
-import type { MicroCMSImage, MicroCMSListContent } from 'microcms-js-sdk'
+import type {
+  MicroCMSImage,
+  MicroCMSListContent,
+  MicroCMSQueries,
+} from 'microcms-js-sdk'
 
 // MicroCMS の提供するデータの基本型を参照
 // id, createdAt, updatedAt, publishedAt, revisedAt を継承
@@ -26,3 +30,6 @@ export type Category = {
 export type Area = {
   name: string
 } & ContentBase
+
+// MicroCMS による API 取得クエリの型定義
+export type Queries = MicroCMSQueries
