@@ -18,7 +18,7 @@ const AsideCategory: FC<AsideCategoryProps> = ({ categories = [] }) => {
           <Box key={category.id} as="li">
             <Link
               as={NextLink}
-              href={`/category/${category.id}`}
+              href={`/category/${category.id}/page/1`}
               display="block"
               p={2}
               bg="blackAlpha.100"

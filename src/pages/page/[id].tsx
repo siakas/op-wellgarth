@@ -62,6 +62,7 @@ export const getStaticProps: GetStaticProps = async (
       pickupSpots,
       latestSpots,
     },
+    revalidate: 60,
   }
 }
 

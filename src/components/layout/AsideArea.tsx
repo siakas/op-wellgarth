@@ -18,7 +18,7 @@ const AsideArea: FC<AsideAreaProps> = ({ areas = [] }) => {
           <Box key={area.id} as="li">
             <Link
               as={NextLink}
-              href={`/area/${area.id}`}
+              href={`/area/${area.id}/page/1`}
               display="block"
               p={2}
               bg="blackAlpha.100"

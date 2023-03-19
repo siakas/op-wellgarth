@@ -31,11 +31,11 @@ export const getStaticProps: GetStaticProps = (
   context: GetStaticPropsContext
 ) => {
   const spotId = context.params?.spotId
-
   return {
     props: {
       spotId,
     },
+    revalidate: 60,
   }
 }
 

@@ -18,7 +18,13 @@ const Pager: FC<PagerProps> = ({
   selectedCategory,
 }) => {
   const getPath = (pageNumber: number) => {
-    return `/page/${pageNumber}`
+    if (selectedArea) {
+      return `/area/${selectedArea.id}/page/${pageNumber}`
+    } else if (selectedCategory) {
+      return `/category/${selectedCategory.id}/page/${pageNumber}`
+    } else {
+      return `/page/${pageNumber}`
+    }
   }
 
   return (
@@ -59,7 +65,6 @@ const Pager: FC<PagerProps> = ({
           .filter((page) => currentPage - 4 <= page && page <= currentPage + 2)
           .map((page, index) => {
             const isActive: boolean = currentPage === page + 1
-
             return (
               <Box
                 key={index}
