@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import type { Spot } from '@/types/microcms'
-import { Box, Image, Link, Stack, Text } from '@chakra-ui/react'
+import { ChevronRightIcon } from '@chakra-ui/icons'
+import { Box, Flex, Image, Link, Stack, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 
@@ -15,7 +16,12 @@ const AsidePickup: FC<AsidePickupProps> = ({ pickupSpots = [] }) => {
 
       <Stack spacing={6} mt="20px">
         {pickupSpots.map((spot) => (
-          <Link key={spot.id} as={NextLink} href="#" display="block">
+          <Link
+            key={spot.id}
+            as={NextLink}
+            href={`/${spot.id}`}
+            display="block"
+          >
             <Image
               src={
                 spot.eyecatch
@@ -33,6 +39,19 @@ const AsidePickup: FC<AsidePickupProps> = ({ pickupSpots = [] }) => {
           </Link>
         ))}
       </Stack>
+
+      <Flex
+        justifyContent="flex-end"
+        alignItems="center"
+        fontSize="sm"
+        gap={1}
+        mt={4}
+      >
+        <ChevronRightIcon w={4} h={4} />
+        <Link as={NextLink} href="/pickup/page/1">
+          もっと見る
+        </Link>
+      </Flex>
     </Box>
   )
 }

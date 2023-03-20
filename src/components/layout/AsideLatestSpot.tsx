@@ -16,7 +16,12 @@ const AsideLatestSpot: FC<AsideLatestSpotProps> = ({ latestSpots = [] }) => {
       <Box as="ul">
         {latestSpots.map((spot) => (
           <Box key={spot.id} as="li" borderBottom="1px solid #eee">
-            <Link as={NextLink} href="#" display="block" p="12px 10px">
+            <Link
+              as={NextLink}
+              href={`/${spot.id}`}
+              display="block"
+              p="12px 10px"
+            >
               {spot.title}
             </Link>
           </Box>
