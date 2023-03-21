@@ -107,7 +107,7 @@ const AreaPage: NextPage<AreaPageProps> = ({
   return (
     <>
       <Main>
-        <BreadcrumbNav />
+        <BreadcrumbNav area={selectedArea} />
         <SpotsList spots={spots} />
 
         <Pager

@@ -26,8 +26,7 @@ type SpotPageProps = {
   areas: Area[]
   categories: Category[]
   sanitizedHtml: string
-  shuffledSameAreaSpots: Spot[]
-  shuffledSameCategorySpots: Spot[]
+  relatedSpots: Spot[]
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -74,16 +73,14 @@ export const getStaticProps: GetStaticProps = async (
     1,
     `categories[contains]${spot.categories[0].id}`
   )
-  // 同エリア、同カテゴリのスポットから、シャッフルして 3 件を抽出 (現在のスポットは除外)
-  const shuffledSameAreaSpots = chain(sameAreaSpots.contents)
-    .shuffle()
-    .filter((obj) => obj.id !== spot.id)
-    .take(3)
-    .value()
-  const shuffledSameCategorySpots = chain(sameCategorySpots.contents)
-    .shuffle()
-    .filter((obj) => obj.id !== spot.id)
-    .take(3)
+
+  // 同エリアスポットと同カテゴリスポットを結合し、シャッフルして 6 件を抽出（現在のスポットは除外）
+  const relatedSpots = chain(sameAreaSpots.contents) // 同エリアスポット一覧に対して
+    .concat(sameCategorySpots.contents) // 同カテゴリスポット一覧を結合
+    .uniqBy('id') // 同一 id のスポットを除去
+    .filter((obj) => obj.id !== spot.id) // 現在のスポットは除外
+    .shuffle() // 順番をシャッフル
+    .take(6) // 先頭 6 件を取得
     .value()
 
   // 共通のエリア情報、カテゴリ情報を取得
@@ -95,8 +92,7 @@ export const getStaticProps: GetStaticProps = async (
       areas,
       categories,
       sanitizedHtml,
-      shuffledSameAreaSpots,
-      shuffledSameCategorySpots,
+      relatedSpots,
     },
     revalidate: 60,
   }
@@ -107,8 +103,7 @@ const SpotPage: NextPage<SpotPageProps> = ({
   areas,
   categories,
   sanitizedHtml,
-  shuffledSameAreaSpots,
-  shuffledSameCategorySpots,
+  relatedSpots,
 }) => {
   return (
     <>
@@ -126,7 +121,7 @@ const SpotPage: NextPage<SpotPageProps> = ({
           />
         </Box>
 
-        <BreadcrumbNav />
+        <BreadcrumbNav area={spot.area} />
 
         {/* スポットタイトル */}
         <SpotPageTitle title={spot.title} />
@@ -174,21 +169,12 @@ const SpotPage: NextPage<SpotPageProps> = ({
           </>
         )}
 
-        {shuffledSameAreaSpots.length !== 0 && (
+        {relatedSpots.length !== 0 && (
           <>
             <HeadingBgGray mt={20} mb={4}>
-              近くのスポット
+              関連スポット
             </HeadingBgGray>
-            <SpotRelated spots={shuffledSameAreaSpots} />
-          </>
-        )}
-
-        {shuffledSameCategorySpots.length !== 0 && (
-          <>
-            <HeadingBgGray mt={10} mb={4}>
-              同じカテゴリのスポット
-            </HeadingBgGray>
-            <SpotRelated spots={shuffledSameCategorySpots} />
+            <SpotRelated spots={relatedSpots} />
           </>
         )}
       </Main>

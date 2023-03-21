@@ -119,7 +119,7 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
   return (
     <>
       <Main>
-        <BreadcrumbNav />
+        <BreadcrumbNav category={selectedCategory} />
         <SpotsList spots={spots} />
 
         <Pager
