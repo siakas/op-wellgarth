@@ -7,7 +7,7 @@ type MainProps = {
 
 const Main: FC<MainProps> = ({ children }) => {
   return (
-    <Box as="main" maxW="820px" w="100%" pb={20}>
+    <Box as="main" maxW="820px" w="100%" pb={20} lineHeight="1.7">
       {children}
     </Box>
   )

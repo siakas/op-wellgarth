@@ -11,14 +11,17 @@ export type ContentBase = MicroCMSListContent
 // スポット情報の型定義
 export type Spot = {
   title: string
+  titleEn?: string
+  isStarred: boolean
   content?: string
   eyecatch?: MicroCMSImage
   categories: Category[]
   area: Area
   holiday?: string
   time?: string
+  tel?: string
+  latLng?: string
   visited: boolean
-  isStarred: boolean
 } & ContentBase
 
 // カテゴリの型定義

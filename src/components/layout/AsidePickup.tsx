@@ -24,9 +24,7 @@ const AsidePickup: FC<AsidePickupProps> = ({ pickupSpots = [] }) => {
           >
             <Image
               src={
-                spot.eyecatch
-                  ? spot.eyecatch.url
-                  : 'https://placehold.jp/400x400.png'
+                spot.eyecatch ? spot.eyecatch.url : '/assets/img/noimage.png'
               }
               alt=""
               objectFit="cover"

@@ -3,13 +3,13 @@ import type { Spot } from '@/types/microcms'
 import { Grid, GridItem, Image, Link, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
-type SpotsListProps = {
+type SpotRelatedProps = {
   spots: Spot[]
 }
 
-const SpotsList: FC<SpotsListProps> = ({ spots }) => {
+const SpotRelated: FC<SpotRelatedProps> = ({ spots }) => {
   return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={10}>
+    <Grid templateColumns="repeat(3, 1fr)" gap={4}>
       {spots.map((spot) => (
         <GridItem key={spot.id}>
           <Link as={NextLink} href={`/${spot.id}`} display="block">
@@ -24,7 +24,7 @@ const SpotsList: FC<SpotsListProps> = ({ spots }) => {
               display="block"
               sx={{ aspectRatio: '1.618 / 1' }}
             />
-            <Text pt={2} fontWeight="bold" color="blackAlpha.800" fontSize="lg">
+            <Text pt={2} fontWeight="bold" color="blackAlpha.800" fontSize="sm">
               {spot.title}
             </Text>
           </Link>
@@ -34,4 +34,4 @@ const SpotsList: FC<SpotsListProps> = ({ spots }) => {
   )
 }
 
-export default SpotsList
+export default SpotRelated
