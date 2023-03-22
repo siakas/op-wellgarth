@@ -22,7 +22,7 @@ const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   return (
     <>
       <motion.div
-        key={router.asPath}
+        key={router.asPath} // key プロパティに router.asPath を渡すことでページのパスが変わるたびにトランジションが実行される（同一ページコンポーネント間のダイナミックルーティングも対象となる）
         initial="initial"
         animate="animate"
         exit="exit"
