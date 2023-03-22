@@ -6,7 +6,7 @@ import type {
 } from 'next'
 import type { Area, Category, Spot } from '@/types/microcms'
 import { Box, Image, Text } from '@chakra-ui/react'
-import { chain, isString } from 'lodash-es'
+import { chain } from 'lodash-es'
 import { getAllSpots, getContents, getSpotById, getSpotsByFilter } from '@/libs'
 import { sanitizeHtml } from '@/libs/sanitizeHtml'
 import { formatLineBreaks } from '@/utils'
@@ -41,22 +41,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const spotId = context.params?.spotId
-  const notFound = !isString(spotId)
-
-  if (notFound) {
-    return {
-      notFound,
-      revalidate: 60,
-    }
-  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const spotId: any = context.params?.spotId
 
   // スポット情報を取得
   const spot = await getSpotById(spotId)
