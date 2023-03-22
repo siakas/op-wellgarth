@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { Container, Flex } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 
@@ -16,9 +17,12 @@ const fadeInOut = {
 }
 
 const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
+  const router = useRouter()
+
   return (
     <>
       <motion.div
+        key={router.asPath}
         initial="initial"
         animate="animate"
         exit="exit"
