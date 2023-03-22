@@ -18,6 +18,7 @@ import Main from '@/components/layout/Main'
 import BreadcrumbNav from '@/components/ui/BreadcrumbNav'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 import SpotBody from '@/components/ui/SpotBody'
+import SpotMeta from '@/components/ui/SpotMeta'
 import SpotPageTitle from '@/components/ui/SpotPageTitle'
 import SpotRelated from '@/components/ui/SpotRelated'
 
@@ -120,6 +121,7 @@ const SpotPage: NextPage<SpotPageProps> = ({
         <SpotPageTitle title={spot.title} />
 
         {/* メタ情報 */}
+        <SpotMeta area={spot.area} categories={spot.categories} />
 
         {/* 記事本文 */}
         <SpotBody sanitizedHtml={sanitizedHtml} />
