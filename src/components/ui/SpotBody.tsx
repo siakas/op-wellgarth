@@ -31,7 +31,7 @@ const SpotBody: FC<SpotBodyProps> = ({ sanitizedHtml }) => {
 
   return (
     <Box
-      mt={6}
+      mt={10}
       css={styles.base}
       dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
     />
