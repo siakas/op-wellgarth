@@ -19,7 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider>
-        <AnimatePresence>
+        <AnimatePresence
+          onExitComplete={() => {
+            window.scrollTo(0, 0)
+          }}
+        >
           <Component {...pageProps} />
         </AnimatePresence>
       </ChakraProvider>
