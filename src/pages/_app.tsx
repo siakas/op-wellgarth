@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
+import { AnimatePresence } from 'framer-motion'
 import Head from 'next/head'
 import GlobalStyle from '@/styles/global'
-import BaseLayout from '@/components/layout/BaseLayout'
 import { siteConfig } from '@@/site.config'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -19,9 +19,13 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider>
-        <BaseLayout>
+        <AnimatePresence
+          onExitComplete={() => {
+            window.scrollTo(0, 0)
+          }}
+        >
           <Component {...pageProps} />
-        </BaseLayout>
+        </AnimatePresence>
       </ChakraProvider>
     </>
   )
