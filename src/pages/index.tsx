@@ -7,6 +7,7 @@ import AsideCategory from '@/components/layout/AsideCategory'
 import AsideLatestSpot from '@/components/layout/AsideLatestSpot'
 import AsidePickup from '@/components/layout/AsidePickup'
 import AsideSearch from '@/components/layout/AsideSearch'
+import BaseLayout from '@/components/layout/BaseLayout'
 import Main from '@/components/layout/Main'
 import BreadcrumbNav from '@/components/ui/BreadcrumbNav'
 import Pager from '@/components/ui/Pager'
@@ -56,20 +57,22 @@ const Home: NextPage<HomeProps> = ({
 }) => {
   return (
     <>
-      <Main>
-        <BreadcrumbNav />
-        <SpotsList spots={spots} />
+      <BaseLayout>
+        <Main>
+          <BreadcrumbNav />
+          <SpotsList spots={spots} />
 
-        <Pager currentPage={currentPage} pager={pager} />
-      </Main>
+          <Pager currentPage={currentPage} pager={pager} />
+        </Main>
 
-      <Aside>
-        <AsideSearch />
-        <AsideLatestSpot latestSpots={latestSpots} />
-        <AsideArea areas={areas} />
-        <AsideCategory categories={categories} />
-        <AsidePickup pickupSpots={pickupSpots} />
-      </Aside>
+        <Aside>
+          <AsideSearch />
+          <AsideLatestSpot latestSpots={latestSpots} />
+          <AsideArea areas={areas} />
+          <AsideCategory categories={categories} />
+          <AsidePickup pickupSpots={pickupSpots} />
+        </Aside>
+      </BaseLayout>
     </>
   )
 }
