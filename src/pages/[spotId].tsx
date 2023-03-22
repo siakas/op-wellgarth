@@ -14,6 +14,7 @@ import Aside from '@/components/layout/Aside'
 import AsideArea from '@/components/layout/AsideArea'
 import AsideCategory from '@/components/layout/AsideCategory'
 import AsideSearch from '@/components/layout/AsideSearch'
+import BaseLayout from '@/components/layout/BaseLayout'
 import Main from '@/components/layout/Main'
 import BreadcrumbNav from '@/components/ui/BreadcrumbNav'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
@@ -101,84 +102,88 @@ const SpotPage: NextPage<SpotPageProps> = ({
 }) => {
   return (
     <>
-      <Main>
-        {/* MV */}
-        <Box mb={6}>
-          <Image
-            src={spot.eyecatch ? spot.eyecatch.url : '/assets/img/noimage.png'}
-            alt=""
-            objectFit="cover"
-            borderRadius={5}
-            w="100%"
-            display="block"
-            sx={{ aspectRatio: '1 / 0.525' }}
-          />
-        </Box>
-
-        <BreadcrumbNav area={spot.area} />
-
-        {/* スポットタイトル */}
-        <SpotPageTitle title={spot.title} />
-
-        {/* メタ情報 */}
-        <SpotMeta area={spot.area} categories={spot.categories} />
-
-        {/* 記事本文 */}
-        <SpotBody sanitizedHtml={sanitizedHtml} />
-
-        {/* 店舗情報 */}
-        {spot.time && (
-          <>
-            <HeadingBgGray mt={10} mb={4}>
-              営業時間
-            </HeadingBgGray>
-            <Text
-              dangerouslySetInnerHTML={{
-                __html: formatLineBreaks(spot.time),
-              }}
+      <BaseLayout>
+        <Main>
+          {/* MV */}
+          <Box mb={6}>
+            <Image
+              src={
+                spot.eyecatch ? spot.eyecatch.url : '/assets/img/noimage.png'
+              }
+              alt=""
+              objectFit="cover"
+              borderRadius={5}
+              w="100%"
+              display="block"
+              sx={{ aspectRatio: '1 / 0.525' }}
             />
-          </>
-        )}
-        {spot.holiday && (
-          <>
-            <HeadingBgGray mt={10} mb={4}>
-              定休日
-            </HeadingBgGray>
-            <Text>{spot.holiday}</Text>
-          </>
-        )}
+          </Box>
 
-        {spot.tel && (
-          <>
-            <HeadingBgGray mt={10} mb={4}>
-              電話番号
-            </HeadingBgGray>
-          </>
-        )}
+          <BreadcrumbNav area={spot.area} />
 
-        {spot.latLng && (
-          <>
-            <HeadingBgGray mt={10} mb={4}>
-              地図
-            </HeadingBgGray>
-          </>
-        )}
+          {/* スポットタイトル */}
+          <SpotPageTitle title={spot.title} />
 
-        {relatedSpots.length !== 0 && (
-          <>
-            <HeadingBgGray mt={20} mb={4}>
-              関連スポット
-            </HeadingBgGray>
-            <SpotRelated spots={relatedSpots} />
-          </>
-        )}
-      </Main>
+          {/* メタ情報 */}
+          <SpotMeta area={spot.area} categories={spot.categories} />
 
-      <Aside>
-        <AsideSearch />
-        <AsideArea areas={areas} />
-        <AsideCategory categories={categories} />
-      </Aside>
+          {/* 記事本文 */}
+          <SpotBody sanitizedHtml={sanitizedHtml} />
+
+          {/* 店舗情報 */}
+          {spot.time && (
+            <>
+              <HeadingBgGray mt={10} mb={4}>
+                営業時間
+              </HeadingBgGray>
+              <Text
+                dangerouslySetInnerHTML={{
+                  __html: formatLineBreaks(spot.time),
+                }}
+              />
+            </>
+          )}
+          {spot.holiday && (
+            <>
+              <HeadingBgGray mt={10} mb={4}>
+                定休日
+              </HeadingBgGray>
+              <Text>{spot.holiday}</Text>
+            </>
+          )}
+
+          {spot.tel && (
+            <>
+              <HeadingBgGray mt={10} mb={4}>
+                電話番号
+              </HeadingBgGray>
+            </>
+          )}
+
+          {spot.latLng && (
+            <>
+              <HeadingBgGray mt={10} mb={4}>
+                地図
+              </HeadingBgGray>
+            </>
+          )}
+
+          {relatedSpots.length !== 0 && (
+            <>
+              <HeadingBgGray mt={20} mb={4}>
+                関連スポット
+              </HeadingBgGray>
+              <SpotRelated spots={relatedSpots} />
+            </>
+          )}
+        </Main>
+
+        <Aside>
+          <AsideSearch />
+          <AsideArea areas={areas} />
+          <AsideCategory categories={categories} />
+        </Aside>
+      </BaseLayout>
     </>
   )
 }
