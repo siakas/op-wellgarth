@@ -22,9 +22,8 @@ const Pager: FC<PagerProps> = ({
   selectedArea,
   selectedCategory,
 }) => {
-  // ページャーの終端ページの値を取得（ページャーから新たな配列を作成して pop() で最後の値を取得）
-  // スプレッド構文であらたな配列を作成しているのは、pop() が元の配列を破壊してしまうため
-  const lastPage = [...pager].pop()
+  // ページャーの終端ページの値を取得
+  const lastPage = pager.length > 0 ? pager[pager.length - 1] : 0
 
   // リンクのパスを取得する関数を定義
   const getPath = (pageNumber: number) => {
