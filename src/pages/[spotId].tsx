@@ -104,7 +104,11 @@ const SpotPage: NextPage<SpotPageProps> = ({
   return (
     <>
       <BaseLayout>
-        <PageMeta pageTitle={spot.title} pageImg={spot.eyecatch?.url} />
+        <PageMeta
+          pageTitle={spot.title}
+          pageDesc={spot.description}
+          pageImg={spot.eyecatch?.url}
+        />
 
         <Main>
           {/* MV */}
@@ -160,6 +164,7 @@ const SpotPage: NextPage<SpotPageProps> = ({
               <HeadingBgGray mt={10} mb={4}>
                 電話番号
               </HeadingBgGray>
+              <Text>{spot.tel}</Text>
             </>
           )}
 
