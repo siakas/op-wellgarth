@@ -16,6 +16,7 @@ import AsideCategory from '@/components/layout/AsideCategory'
 import AsideSearch from '@/components/layout/AsideSearch'
 import BaseLayout from '@/components/layout/BaseLayout'
 import Main from '@/components/layout/Main'
+import PageMeta from '@/components/layout/PageMeta'
 import BreadcrumbNav from '@/components/ui/BreadcrumbNav'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 import SpotBody from '@/components/ui/SpotBody'
@@ -103,6 +104,8 @@ const SpotPage: NextPage<SpotPageProps> = ({
   return (
     <>
       <BaseLayout>
+        <PageMeta pageTitle={spot.title} pageImg={spot.eyecatch?.url} />
+
         <Main>
           {/* MV */}
           <Box mb={6}>

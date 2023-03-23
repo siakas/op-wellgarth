@@ -10,10 +10,10 @@ type BaseLayoutProps = {
 }
 
 // ページ遷移アニメーションのプロパティを定義
-const fadeInOut = {
-  initial: { opacity: 0, y: 15 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 15 },
+const pageTransition = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
 }
 
 const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
@@ -26,9 +26,9 @@ const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
         initial="initial"
         animate="animate"
         exit="exit"
-        variants={fadeInOut}
+        variants={pageTransition}
         transition={{
-          duration: 0.3,
+          duration: 0.35,
         }}
       >
         <div className="wrapper">

@@ -9,6 +9,7 @@ import AsidePickup from '@/components/layout/AsidePickup'
 import AsideSearch from '@/components/layout/AsideSearch'
 import BaseLayout from '@/components/layout/BaseLayout'
 import Main from '@/components/layout/Main'
+import PageMeta from '@/components/layout/PageMeta'
 import BreadcrumbNav from '@/components/ui/BreadcrumbNav'
 import Pager from '@/components/ui/Pager'
 import SpotsList from '@/components/ui/SpotsList'
@@ -58,6 +59,8 @@ const Home: NextPage<HomeProps> = ({
   return (
     <>
       <BaseLayout>
+        <PageMeta />
+
         <Main>
           <BreadcrumbNav />
           <SpotsList spots={spots} />
