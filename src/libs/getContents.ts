@@ -95,6 +95,19 @@ export const getSpotById = async (spotId: string) => {
   return res
 }
 
+// 検索クエリで絞り込んだスポット一覧を取得
+export const getSpotsByQuery = async (query: string) => {
+  const res = await client.getList<Spot>({
+    endpoint: 'blogs',
+    queries: {
+      limit: 100,
+      q: query,
+    },
+  })
+
+  return res
+}
+
 // 登録されているすべてのエリア一覧を取得
 export const getAllAreas = async () => {
   const res = await client.getList<Area>({
