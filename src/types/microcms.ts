@@ -12,6 +12,7 @@ export type ContentBase = MicroCMSListContent
 export type Spot = {
   title: string
   titleEn?: string
+  description?: string
   isStarred: boolean
   content?: string
   eyecatch?: MicroCMSImage

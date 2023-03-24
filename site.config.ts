@@ -2,6 +2,7 @@ export const siteConfig = {
   siteMeta: {
     title: 'Kyoto Finder',
     description: '京都の好きなスポットを個人の備忘録としてまとめています',
+    img: '',
   },
   baseUrl:
     process.env.NODE_ENV === 'production'
