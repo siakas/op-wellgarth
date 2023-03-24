@@ -27,7 +27,6 @@ import AsideArea from '@/components/layout/AsideArea'
 import AsideCategory from '@/components/layout/AsideCategory'
 import AsideLatestSpot from '@/components/layout/AsideLatestSpot'
 import AsidePickup from '@/components/layout/AsidePickup'
-import AsideSearch from '@/components/layout/AsideSearch'
 import BaseLayout from '@/components/layout/BaseLayout'
 import Main from '@/components/layout/Main'
 import PageMeta from '@/components/layout/PageMeta'
@@ -146,7 +145,6 @@ const SearchPage: NextPage<SearchPageProps> = ({
         </Main>
 
         <Aside>
-          <AsideSearch />
           <AsideLatestSpot latestSpots={latestSpots} />
           <AsideArea areas={areas} />
           <AsideCategory categories={categories} />
