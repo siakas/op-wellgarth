@@ -32,7 +32,7 @@ const SpotBody: FC<SpotBodyProps> = ({ sanitizedHtml }) => {
 
         /* br 要素しか持っていない p 要素を非表示化 */
         /* MicroCMS のリッチエディタの仕様で、空行にも p > br が生成されてしまう問題への対処 */
-        &:has(br:first-child:last-child) {
+        &:has(br:only-child) {
           display: none;
         }
       }
