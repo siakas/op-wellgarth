@@ -7,7 +7,7 @@ type AsideProps = {
 
 const Aside: FC<AsideProps> = ({ children }) => {
   return (
-    <Box as="aside" w="300px">
+    <Box as="aside" w={{ base: '100%', lg: '300px' }} flexShrink="0">
       {children}
     </Box>
   )

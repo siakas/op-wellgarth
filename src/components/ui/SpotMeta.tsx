@@ -10,7 +10,12 @@ type SpotMetaProps = {
 
 const SpotMeta: FC<SpotMetaProps> = ({ area, categories }) => {
   return (
-    <Flex mt={2} lineHeight="base" gap="24px">
+    <Flex
+      mt={2}
+      lineHeight="base"
+      gap={{ base: '8px', sm: '24px' }}
+      flexDirection={{ base: 'column', sm: 'row' }}
+    >
       <Flex alignItems="center" gap="8px">
         <Heading as="h3" fontSize="sm" lineHeight="inherit">
           エリア

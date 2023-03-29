@@ -3,9 +3,20 @@ import { Box, Container, Flex, Text } from '@chakra-ui/react'
 
 const Footer: FC = () => {
   return (
-    <Box as="footer" bg="gray.700" color="white" pt={20} pb={14}>
+    <Box
+      as="footer"
+      bg="gray.700"
+      color="white"
+      pt={{ base: '16px', md: '80px' }}
+      pb={{ base: '32px', md: '56px' }}
+    >
       <Container maxW="1200px">
-        <Flex as="ul" fontSize="sm" gap="30px">
+        <Flex
+          as="ul"
+          fontSize="sm"
+          gap="30px"
+          display={{ base: 'none', md: 'flex' }}
+        >
           <Box as="li">
             <a href="#">運営会社</a>
           </Box>

@@ -9,7 +9,14 @@ type SpotRelatedProps = {
 
 const SpotRelated: FC<SpotRelatedProps> = ({ spots }) => {
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+    <Grid
+      templateColumns={{
+        base: 'repeat(1, 1fr)',
+        sm: 'repeat(2, 1fr)',
+        md: 'repeat(3, 1fr)',
+      }}
+      gap={4}
+    >
       {spots.map((spot) => (
         <GridItem key={spot.id}>
           <Link as={NextLink} href={`/${spot.id}`} display="block">
@@ -24,7 +31,13 @@ const SpotRelated: FC<SpotRelatedProps> = ({ spots }) => {
               display="block"
               sx={{ aspectRatio: '1.618 / 1' }}
             />
-            <Text pt={2} fontWeight="bold" color="blackAlpha.800" fontSize="sm">
+            <Text
+              pt={2}
+              fontWeight="bold"
+              color="blackAlpha.800"
+              fontSize="sm"
+              lineHeight="1.4"
+            >
               {spot.title}
             </Text>
           </Link>

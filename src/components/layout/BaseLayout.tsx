@@ -14,7 +14,13 @@ const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
         <Header />
 
         <Container maxW="1200px" py={10}>
-          <Flex justifyContent="space-between">{children}</Flex>
+          <Flex
+            justifyContent="space-between"
+            flexDir={{ base: 'column', lg: 'row' }}
+            gap="48px"
+          >
+            {children}
+          </Flex>
         </Container>
 
         <Footer />
