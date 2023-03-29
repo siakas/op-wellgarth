@@ -11,7 +11,7 @@ type AsideLatestSpotProps = {
 const AsideLatestSpot: FC<AsideLatestSpotProps> = ({ latestSpots = [] }) => {
   return (
     <Box mb={12}>
-      <HeadingBgGray>最新のスポット</HeadingBgGray>
+      <HeadingBgGray>最近更新されたスポット</HeadingBgGray>
 
       <Box as="ul">
         {latestSpots.map((spot) => (
