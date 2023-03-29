@@ -8,7 +8,12 @@ type SpotPageTitleProps = {
 const SpotPageTitle: FC<SpotPageTitleProps> = ({ title }) => {
   return (
     <Box mt={10}>
-      <Heading as="h1" fontSize="2.5rem" lineHeight="1.5" fontWeight="bold">
+      <Heading
+        as="h1"
+        fontSize={{ base: '1.6rem', sm: '2rem', md: '2.5rem' }}
+        lineHeight="1.4"
+        fontWeight="bold"
+      >
         {title}
       </Heading>
     </Box>

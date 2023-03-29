@@ -19,7 +19,7 @@ const Header: FC = () => {
         </Text>
       </Box>
       <Spacer />
-      <Flex align="center">
+      <Flex align="center" display={{ base: 'none', lg: 'flex' }}>
         <Box margin="0 1rem">
           <Text fontSize="lg">Home</Text>
         </Box>

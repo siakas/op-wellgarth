@@ -195,13 +195,11 @@ export const getPickupSpots = async () => {
   return res
 }
 
-// 最新のスポット一覧を取得（最大 5 件）
+// 最近追加されたスポットの取得から、最近更新されたスポット一覧の取得に変更（最大 6 件）
 export const getLatestSpots = async () => {
   const res = await client.getList<Spot>({
     endpoint: 'blogs',
-    queries: {
-      limit: 5,
-    },
+    queries: { limit: 6, orders: '-updatedAt' },
   })
 
   return res
