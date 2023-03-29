@@ -29,7 +29,13 @@ const Main: FC<MainProps> = ({ children }) => {
           duration: 0.35,
         }}
       >
-        <Box as="main" maxW="820px" w="100%" pb={20} lineHeight="1.7">
+        <Box
+          as="main"
+          maxW={{ base: '100%', lg: '820px' }}
+          w="100%"
+          pb={{ base: '0', lg: '80px' }}
+          lineHeight="1.7"
+        >
           {children}
         </Box>
       </motion.div>

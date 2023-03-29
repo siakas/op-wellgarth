@@ -13,6 +13,8 @@ import { formatLineBreaks } from '@/utils'
 import Aside from '@/components/layout/Aside'
 import AsideArea from '@/components/layout/AsideArea'
 import AsideCategory from '@/components/layout/AsideCategory'
+import AsideLatestSpot from '@/components/layout/AsideLatestSpot'
+import AsidePickup from '@/components/layout/AsidePickup'
 import AsideSearch from '@/components/layout/AsideSearch'
 import BaseLayout from '@/components/layout/BaseLayout'
 import Main from '@/components/layout/Main'
@@ -28,6 +30,8 @@ type SpotPageProps = {
   spot: Spot
   areas: Area[]
   categories: Category[]
+  pickupSpots: Spot[]
+  latestSpots: Spot[]
   sanitizedHtml: string
   relatedSpots: Spot[]
 }
@@ -80,13 +84,15 @@ export const getStaticProps: GetStaticProps = async (
     .value()
 
   // 共通のエリア情報、カテゴリ情報を取得
-  const { areas, categories } = await getContents()
+  const { areas, categories, pickupSpots, latestSpots } = await getContents()
 
   return {
     props: {
       spot,
       areas,
       categories,
+      pickupSpots,
+      latestSpots,
       sanitizedHtml,
       relatedSpots,
     },
@@ -98,6 +104,8 @@ const SpotPage: NextPage<SpotPageProps> = ({
   spot,
   areas,
   categories,
+  pickupSpots,
+  latestSpots,
   sanitizedHtml,
   relatedSpots,
 }) => {
@@ -132,7 +140,11 @@ const SpotPage: NextPage<SpotPageProps> = ({
           <SpotPageTitle title={spot.title} />
 
           {/* メタ情報 */}
-          <SpotMeta area={spot.area} categories={spot.categories} />
+          <SpotMeta
+            area={spot.area}
+            categories={spot.categories}
+            updateAt={spot.updatedAt}
+          />
 
           {/* 記事本文 */}
           <SpotBody sanitizedHtml={sanitizedHtml} />
@@ -188,8 +200,10 @@ const SpotPage: NextPage<SpotPageProps> = ({
 
         <Aside>
           <AsideSearch />
+          <AsideLatestSpot latestSpots={latestSpots} />
           <AsideArea areas={areas} />
           <AsideCategory categories={categories} />
+          <AsidePickup pickupSpots={pickupSpots} />
         </Aside>
       </BaseLayout>
     </>

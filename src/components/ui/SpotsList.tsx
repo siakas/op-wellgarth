@@ -9,7 +9,10 @@ type SpotsListProps = {
 
 const SpotsList: FC<SpotsListProps> = ({ spots }) => {
   return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={10}>
+    <Grid
+      templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)' }}
+      gap={{ base: '1.5rem 1rem', md: '2.5rem' }}
+    >
       {spots.map((spot) => (
         <GridItem key={spot.id}>
           <Link as={NextLink} href={`/${spot.id}`} display="block">
@@ -24,7 +27,13 @@ const SpotsList: FC<SpotsListProps> = ({ spots }) => {
               display="block"
               sx={{ aspectRatio: '1.618 / 1' }}
             />
-            <Text pt={2} fontWeight="bold" color="blackAlpha.800" fontSize="lg">
+            <Text
+              pt={3}
+              fontWeight="bold"
+              color="blackAlpha.800"
+              fontSize={{ base: 'md', md: 'lg' }}
+              lineHeight="1.4"
+            >
               {spot.title}
             </Text>
           </Link>

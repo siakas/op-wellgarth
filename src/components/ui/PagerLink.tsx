@@ -11,8 +11,8 @@ const PagerLink: FC<PagerLinkProps> = ({ children, ...props }) => {
   return (
     <Link
       as={NextLink}
-      w={10}
-      h={10}
+      w={{ base: '32px', md: '40px' }}
+      h={{ base: '32px', md: '40px' }}
       display="flex"
       justifyContent="center"
       alignItems="center"
