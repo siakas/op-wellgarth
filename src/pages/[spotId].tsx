@@ -140,7 +140,11 @@ const SpotPage: NextPage<SpotPageProps> = ({
           <SpotPageTitle title={spot.title} />
 
           {/* メタ情報 */}
-          <SpotMeta area={spot.area} categories={spot.categories} />
+          <SpotMeta
+            area={spot.area}
+            categories={spot.categories}
+            updateAt={spot.updatedAt}
+          />
 
           {/* 記事本文 */}
           <SpotBody sanitizedHtml={sanitizedHtml} />
