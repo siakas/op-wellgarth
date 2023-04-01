@@ -22,18 +22,16 @@ const Header: FC = () => {
       <Flex align="center" display={{ base: 'none', lg: 'flex' }}>
         <Box margin="0 1rem">
           <Text fontSize="lg">
-            <Link href="/">Home</Link>
+            <Link href="/">トップ</Link>
           </Text>
         </Box>
         <Box margin="0 1rem">
           <Text fontSize="lg">
-            <Link href="/favorites">Starred</Link>
+            <Link href="/favorites">お気に入り</Link>
           </Text>
         </Box>
         <Box margin="0 1rem">
-          <Text fontSize="lg">
-            <Link href="/pickup/page/1">Pickuped</Link>
-          </Text>
+          <Text fontSize="lg">未訪問</Text>
         </Box>
       </Flex>
     </Flex>
