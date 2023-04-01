@@ -20,6 +20,7 @@ import BaseLayout from '@/components/layout/BaseLayout'
 import Main from '@/components/layout/Main'
 import PageMeta from '@/components/layout/PageMeta'
 import BreadcrumbNav from '@/components/ui/BreadcrumbNav'
+import FavoriteButton from '@/components/ui/FavoriteButton'
 import HeadingBgGray from '@/components/ui/HeadingBgGray'
 import SpotBody from '@/components/ui/SpotBody'
 import SpotMeta from '@/components/ui/SpotMeta'
@@ -145,6 +146,9 @@ const SpotPage: NextPage<SpotPageProps> = ({
             categories={spot.categories}
             updateAt={spot.updatedAt}
           />
+
+          {/* お気に入りボタン */}
+          <FavoriteButton spot={spot} />
 
           {/* 記事本文 */}
           <SpotBody sanitizedHtml={sanitizedHtml} />

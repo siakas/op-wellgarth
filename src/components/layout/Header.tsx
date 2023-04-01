@@ -21,13 +21,19 @@ const Header: FC = () => {
       <Spacer />
       <Flex align="center" display={{ base: 'none', lg: 'flex' }}>
         <Box margin="0 1rem">
-          <Text fontSize="lg">Home</Text>
+          <Text fontSize="lg">
+            <Link href="/">Home</Link>
+          </Text>
         </Box>
         <Box margin="0 1rem">
-          <Text fontSize="lg">About</Text>
+          <Text fontSize="lg">
+            <Link href="/favorites">Starred</Link>
+          </Text>
         </Box>
         <Box margin="0 1rem">
-          <Text fontSize="lg">Contact</Text>
+          <Text fontSize="lg">
+            <Link href="/pickup/page/1">Pickuped</Link>
+          </Text>
         </Box>
       </Flex>
     </Flex>
