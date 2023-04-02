@@ -21,7 +21,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({ spot }) => {
       setFavorites(favorites.filter((favorite) => favorite.id !== spot.id))
     } else {
       // 現在の配列に渡されたスポットを追加
-      setFavorites([...favorites, spot])
+      setFavorites([spot, ...favorites])
     }
   }
 
