@@ -1,5 +1,6 @@
 import type { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import type { Area, Category, Spot } from '@/types/microcms'
+import { useState, useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import { getContents } from '@/libs'
 import { favoritesState } from '@/state/favoritesState'
@@ -43,8 +44,11 @@ const FavoritePage: NextPage<FavoritePageProps> = ({
   pickupSpots,
   latestSpots,
 }) => {
-  // ToDo: 表示に問題はないがリロードするとエラーが表示されるので修正が必要
-  const favorites = useRecoilValue(favoritesState)
+  const [favorites, setFavorites] = useState<Spot[]>([])
+  const favoritesFromRecoil = useRecoilValue(favoritesState)
+  useEffect(() => {
+    setFavorites(favoritesFromRecoil)
+  }, [favoritesFromRecoil])
 
   return (
     <>
