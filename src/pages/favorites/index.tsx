@@ -43,6 +43,7 @@ const FavoritePage: NextPage<FavoritePageProps> = ({
   pickupSpots,
   latestSpots,
 }) => {
+  // ToDo: 表示に問題はないがリロードするとエラーが表示されるので修正が必要
   const favorites = useRecoilValue(favoritesState)
 
   return (
