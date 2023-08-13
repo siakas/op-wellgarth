@@ -8,13 +8,33 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      maxWidth: {
+        '7xl': '75rem',
+      },
+      fontFamily: {
+        body: [
+          'var(--font-openSans)',
+          'Hiragino Sans',
+          'ヒラギノ角ゴシック',
+          'sans-serif',
+        ],
+      },
+      lineHeight: {
+        relaxed: '1.8',
+      },
+      colors: {
+        stone: {
+          150: '#EEEDec',
+        },
+      },
+      aspectRatio: {
+        gold: '1.618 / 1',
+        goldReverse: '1 / 1.618',
+        silver: '1.4 / 1',
+        silverReverse: '1 / 1.4',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
 export default config
