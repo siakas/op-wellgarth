@@ -12,7 +12,7 @@ const AsideUpdatedSpot = async () => {
         {spots.map((spot) => (
           <li key={spot.id} className="border-b border-gray-200">
             <Link
-              href={`${spot.id}`}
+              href={`/spot/${spot.id}`}
               className="block px-2 py-3 hover:underline"
             >
               {spot.title}

@@ -10,7 +10,7 @@ type Props = {
 const SpotMeta = ({ area, categories, updateAt }: Props) => {
   return (
     <>
-      <div className="mt-2 flex flex-col gap-2 leading-normal sm:flex-row sm:gap-6">
+      <div className="mt-4 flex flex-col gap-2 leading-normal sm:flex-row sm:gap-6">
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-medium leading-inherit">エリア</h3>
           <p className="text-sm leading-inherit">

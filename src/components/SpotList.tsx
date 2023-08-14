@@ -10,7 +10,7 @@ const SpotList = ({ spots }: Props) => {
     <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 md:gap-10">
       {spots.map((spot) => (
         <div key={spot.id}>
-          <Link href={`/${spot.id}`} className="group">
+          <Link href={`/spot/${spot.id}`} className="group">
             <img
               src={
                 spot.eyecatch ? spot.eyecatch.url : '/assets/img/noimage.png'

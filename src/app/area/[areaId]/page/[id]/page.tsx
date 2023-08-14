@@ -32,7 +32,7 @@ const AreaPage = async ({ params }: Props) => {
 
   return (
     <>
-      <h1 className="mb-8 text-2xl font-semibold">
+      <h1 className="mb-8 text-3xl font-semibold">
         「{selectedArea?.name}」周辺のスポット一覧
       </h1>
       <SpotList spots={spots.contents} />
