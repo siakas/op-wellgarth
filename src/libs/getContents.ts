@@ -27,6 +27,22 @@ export const getAllSpots = async () => {
   return res
 }
 
+// ID からスポット詳細を取得
+export const getSpotById = async (spotId: string) => {
+  const res = await client.getListDetail<Spot>({
+    endpoint: 'blogs',
+    contentId: spotId,
+    queries: {
+      depth: 2,
+    },
+    customRequestInit: {
+      cache: 'force-cache',
+    },
+  })
+
+  return res
+}
+
 // 特定の条件でフィルタリングしたスポット一覧を取得
 export const getSpotsByFilter = async (
   limit: number,

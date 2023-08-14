@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import type { ReactNode } from 'react'
-import { openSans } from '@/utils/font'
+import { openSans } from '@/utils'
 import AsideArea from '@/components/AsideArea'
 import AsideCategory from '@/components/AsideCategory'
 import AsideSearch from '@/components/AsideSearch'

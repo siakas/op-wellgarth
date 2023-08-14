@@ -21,6 +21,11 @@ const config: Config = {
       },
       lineHeight: {
         relaxed: '1.8',
+        inherit: 'inherit',
+      },
+      fontSize: {
+        '3xl': '2rem',
+        '4xl': '2.5rem',
       },
       colors: {
         stone: {
