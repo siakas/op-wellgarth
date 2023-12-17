@@ -1,4 +1,5 @@
 import { Heading } from '@/components/elements/Heading'
+import { Link } from '@/components/elements/Link'
 import { Footer } from '@/components/layouts/Footer'
 import { Header } from '@/components/layouts/Header'
 import '@/styles/globals.css'
@@ -33,6 +34,26 @@ export default function RootLayout({
               <Heading.Outline color="primary">
                 カテゴリから探す
               </Heading.Outline>
+              <ul className="flex flex-wrap gap-2">
+                <li>
+                  <Link.Basic href="#">hoge</Link.Basic>
+                </li>
+                <li>
+                  <Link.Basic href="#">hoge</Link.Basic>
+                </li>
+                <li>
+                  <Link.Basic href="#">hoge</Link.Basic>
+                </li>
+                <li>
+                  <Link.Basic href="#">hoge</Link.Basic>
+                </li>
+                <li>
+                  <Link.Basic href="#">hoge</Link.Basic>
+                </li>
+                <li>
+                  <Link.Basic href="#">hoge</Link.Basic>
+                </li>
+              </ul>
             </aside>
           </div>
         </div>
