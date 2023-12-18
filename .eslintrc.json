@@ -25,6 +25,7 @@
       }
     ],
     "perfectionist/sort-imports": "off",
+    "perfectionist/sort-named-imports": "off",
     "react/jsx-curly-brace-presence": "error",
     "react/self-closing-comp": [
       "error",
