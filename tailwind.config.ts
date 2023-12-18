@@ -33,7 +33,7 @@ const config: Config = {
         body: [
           'var(--font-inter)',
           'Hiragino Sans',
-          'ヒラギノ角ゴシック',
+          'Hiragino Kaku Gothic Pro',
           'sans-serif',
         ],
       },

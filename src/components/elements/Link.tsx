@@ -42,6 +42,25 @@ const Link = {
       />
     )
   },
+
+  // ページネーション用リンクボタン
+  Page: (
+    props: Props & {
+      isActive?: boolean
+    },
+  ) => {
+    const { isActive = false } = props
+    return (
+      <Base
+        {...props}
+        className={clsx(
+          'grid h-10 w-10 place-items-center rounded hover:text-blue-600',
+          isActive && 'bg-[#2b6cb0] text-white hover:text-white',
+          props.className,
+        )}
+      />
+    )
+  },
 }
 
 export { Link }

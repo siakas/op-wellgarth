@@ -28,32 +28,89 @@ export default function RootLayout({
             </main>
 
             <aside className="w-full shrink-0 lg:w-[300px]">
-              <Heading.Basic>最近更新されたスポット</Heading.Basic>
-              <Heading.Basic color="primary">エリアから探す</Heading.Basic>
-              <Heading.Outline>カテゴリから探す</Heading.Outline>
-              <Heading.Outline color="primary">
-                カテゴリから探す
-              </Heading.Outline>
-              <ul className="flex flex-wrap gap-2">
-                <li>
-                  <Link.Basic href="#">hoge</Link.Basic>
-                </li>
-                <li>
-                  <Link.Basic href="#">hoge</Link.Basic>
-                </li>
-                <li>
-                  <Link.Basic href="#">hoge</Link.Basic>
-                </li>
-                <li>
-                  <Link.Basic href="#">hoge</Link.Basic>
-                </li>
-                <li>
-                  <Link.Basic href="#">hoge</Link.Basic>
-                </li>
-                <li>
-                  <Link.Basic href="#">hoge</Link.Basic>
-                </li>
-              </ul>
+              <div className="mb-12">
+                <Heading.Basic>最近更新されたスポット</Heading.Basic>
+                <ul>
+                  <li className="border-b border-gray-200">
+                    <a className="block px-2 py-3 hover:underline" href="#">
+                      大力餅 衣笠店
+                    </a>
+                  </li>
+                  <li className="border-b border-gray-200">
+                    <a className="block px-2 py-3 hover:underline" href="#">
+                      赤垣屋
+                    </a>
+                  </li>
+                  <li className="border-b border-gray-200">
+                    <a className="block px-2 py-3 hover:underline" href="#">
+                      とんかつ豚ゴリラ 本店（円町）
+                    </a>
+                  </li>
+                  <li className="border-b border-gray-200">
+                    <a className="block px-2 py-3 hover:underline" href="#">
+                      焼肉ホルモン まもすけ
+                    </a>
+                  </li>
+                  <li className="border-b border-gray-200">
+                    <a className="block px-2 py-3 hover:underline" href="#">
+                      とくら 京都三条店
+                    </a>
+                  </li>
+                  <li className="border-b border-gray-200">
+                    <a className="block px-2 py-3 hover:underline" href="#">
+                      銀閣寺喜み家
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mb-12">
+                <Heading.Basic>エリア</Heading.Basic>
+                <ul className="flex flex-wrap gap-2">
+                  <li>
+                    <Link.Basic href="#">四条烏丸</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">河原町</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">御所周辺</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">二条城</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">祇園・東山・清水</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">岡崎・吉田</Link.Basic>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mb-12">
+                <Heading.Basic>カテゴリ</Heading.Basic>
+                <ul className="flex flex-wrap gap-2">
+                  <li>
+                    <Link.Basic href="#">とんかつ</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">うどん・そば・定食</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">焼肉・ステーキ・肉バル</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">居酒屋・割烹</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">ラーメン</Link.Basic>
+                  </li>
+                  <li>
+                    <Link.Basic href="#">寿司・うなぎ・天ぷら</Link.Basic>
+                  </li>
+                </ul>
+              </div>
             </aside>
           </div>
         </div>
