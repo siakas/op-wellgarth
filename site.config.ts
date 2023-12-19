@@ -5,7 +5,7 @@ export const siteConfig = {
       ? process.env.NEXT_PUBLIC_BASEURL ?? ''
       : 'http://localhost:3000',
   defaultLimit: process.env.NEXT_PUBLIC_DEFAULT_LIMIT ?? 10,
-  serviceId: process.env.SERVICE_ID ?? '',
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN ?? '',
   siteMeta: {
     description: '京都の好きなスポットを個人の備忘録としてまとめています',
     img: '',
