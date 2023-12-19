@@ -31,7 +31,7 @@ const CategoryPage = async ({ params }: Props) => {
   return (
     <>
       <h1 className="mb-5 text-2xl font-medium">
-        「{selectedCategory?.name}」周辺のスポット一覧
+        「{selectedCategory?.name}」のスポット一覧
       </h1>
       <SpotList spots={spots.contents} />
       <Pager

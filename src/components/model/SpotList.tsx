@@ -20,10 +20,15 @@ export const SpotList = ({ spots }: Props) => {
               }
               width={600}
             />
-            <ul className="flex flex-wrap gap-1 pt-2 text-xs text-gray-500">
-              <li className="rounded bg-slate-200 p-1">{spot.area.name}</li>
+            <ul className="flex flex-wrap gap-1 pt-2 text-xs text-stone-600">
+              <li className="rounded bg-stone-100 px-2 py-1">
+                {spot.area.name}
+              </li>
               {spot.categories.map((category) => (
-                <li className="rounded bg-slate-200 p-1" key={category.id}>
+                <li
+                  className="rounded bg-stone-100 px-2 py-1"
+                  key={category.id}
+                >
                   {category.name}
                 </li>
               ))}

@@ -8,12 +8,18 @@ interface Props {
   children: ReactNode
   className?: string
   href: Url
+  target?: string
 }
 
 // ロジックは Base に集約する
-const Base = ({ children, className, href }: Props) => {
+const Base = ({ children, className, href, target }: Props) => {
   return (
-    <NextLink className={clsx(className)} href={href}>
+    <NextLink
+      className={clsx(className)}
+      href={href}
+      rel={target ? 'noopener noreferrer' : undefined}
+      target={target}
+    >
       {children}
     </NextLink>
   )
