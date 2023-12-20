@@ -1,9 +1,9 @@
 import { AsideArea } from '@/components/layouts/AsideArea'
 import { AsideCategory } from '@/components/layouts/AsideCategory'
+import { AsideSearch } from '@/components/layouts/AsideSearch'
 import { AsideUpdatedSpots } from '@/components/layouts/AsideUpdatedSpots'
 import { Footer } from '@/components/layouts/Footer'
 import { Header } from '@/components/layouts/Header'
-import { Input } from '@/components/ui/input'
 import '@/styles/globals.css'
 import { inter } from '@/utils/fonts'
 import type { Metadata } from 'next'
@@ -30,14 +30,7 @@ export default function RootLayout({
             </main>
 
             <aside className="w-full shrink-0 lg:w-[300px]">
-              <div className="mb-12">
-                <Input
-                  className="text-base"
-                  placeholder="サイト内検索"
-                  type="text"
-                />
-              </div>
-
+              <AsideSearch />
               <AsideUpdatedSpots />
               <AsideArea />
               <AsideCategory />

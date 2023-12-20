@@ -50,6 +50,23 @@ export const getSpotById = async (spotId: string) => {
   }
 }
 
+// 検索クエリで絞り込んだスポット一覧を取得
+export const getSpotsByQuery = async (query: string) => {
+  try {
+    const res = await client.getList<Spot>({
+      endpoint: 'spots',
+      queries: {
+        limit: 100,
+        q: query,
+      },
+    })
+
+    return res
+  } catch (error) {
+    throw error
+  }
+}
+
 // 特定の条件でフィルタリングしたスポット一覧を取得
 export const getSpotsByFilter = async (
   limit: number,
