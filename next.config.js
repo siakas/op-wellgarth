@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
-const withInterceptStdout = require('next-intercept-stdout')
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.microcms-assets.io',
+      }
+    ]
+  }
+}
 
-module.exports = withInterceptStdout(
-  {
-    reactStrictMode: true,
-  },
-  (text) => (text.includes('Duplicate atom key') ? '' : text)
-)
+module.exports = nextConfig
