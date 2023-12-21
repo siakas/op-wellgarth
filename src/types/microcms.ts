@@ -1,27 +1,27 @@
-import type {
+// MicroCMS の提供するデータの基本型を参照
+import {
   MicroCMSImage,
   MicroCMSListContent,
   MicroCMSQueries,
 } from 'microcms-js-sdk'
 
-// MicroCMS の提供するデータの基本型を参照
 // id, createdAt, updatedAt, publishedAt, revisedAt を継承
 export type ContentBase = MicroCMSListContent
 
 // スポット情報の型定義
 export type Spot = {
+  area: Area
+  categories: Category[]
+  content?: string
+  description?: string
+  eyecatch?: MicroCMSImage
+  holiday?: string
+  isStarred: boolean
+  latLng?: string
+  tel?: string
+  time?: string
   title: string
   titleEn?: string
-  description?: string
-  isStarred: boolean
-  content?: string
-  eyecatch?: MicroCMSImage
-  categories: Category[]
-  area: Area
-  holiday?: string
-  time?: string
-  tel?: string
-  latLng?: string
   visited: boolean
 } & ContentBase
 
