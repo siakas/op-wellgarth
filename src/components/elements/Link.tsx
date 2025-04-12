@@ -30,10 +30,10 @@ const Link = {
 
   // 基本的なリンクボタン
   Basic: (
-    props: Props & {
+    props: {
       hoverColor?: Color
       size?: Size
-    },
+    } & Props,
   ) => {
     const { hoverColor = 'primary', size = 'sm' } = props
     return (
@@ -51,16 +51,16 @@ const Link = {
 
   // ページネーション用リンクボタン
   Page: (
-    props: Props & {
+    props: {
       isActive?: boolean
-    },
+    } & Props,
   ) => {
     const { isActive = false } = props
     return (
       <Base
         {...props}
         className={clsx(
-          'grid h-10 w-10 place-items-center rounded hover:text-blue-600',
+          'grid size-10 place-items-center rounded hover:text-blue-600',
           isActive && 'bg-[#2b6cb0] text-white hover:text-white',
           props.className,
         )}

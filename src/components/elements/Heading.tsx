@@ -21,12 +21,12 @@ const Heading = {
 
   // 基本的な見出し
   Basic: (
-    props: Props & {
+    props: {
       // オプションを追加
       color?: Color
       rounded?: Rounded
       size?: Size
-    },
+    } & Props,
   ) => {
     const { color = 'secondary', rounded = 'md', size = 'xl' } = props
     return (
@@ -45,12 +45,12 @@ const Heading = {
 
   // アウトラインの見出し
   Outline: (
-    props: Props & {
+    props: {
       // オプションを追加
       color?: Color
       rounded?: Rounded
       size?: Size
-    },
+    } & Props,
   ) => {
     const { color = 'secondary', rounded = 'md', size = 'xl' } = props
     return (
