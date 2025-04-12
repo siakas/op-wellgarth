@@ -1,6 +1,6 @@
 {
   "name": "op-wellgarth",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,39 +12,42 @@
     "fix": "run-s fix:prettier fix:eslint",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run lint:prettier -- --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lib:update": "ncu --interactive --format group"
   },
   "dependencies": {
-    "class-variance-authority": "^0.7.0",
-    "dayjs": "^1.11.10",
+    "class-variance-authority": "^0.7.1",
+    "dayjs": "^1.11.13",
     "lodash-es": "^4.17.21",
-    "lucide-react": "^0.298.0",
+    "lucide-react": "^0.487.0",
     "microcms-js-sdk": "^2.7.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
     "tailwind-merge": "^2.1.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "clsx": "^2.0.0",
+    "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-perfectionist": "^2.5.0",
-    "eslint-plugin-tailwindcss": "^3.13.0",
+    "eslint-plugin-tailwindcss": "^3.18.0",
     "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
+    "lint-staged": "^15.5.1",
+    "npm-check-updates": "^17.1.18",
     "npm-run-all": "^4.1.5",
     "postcss": "^8",
-    "prettier": "^3.1.1",
+    "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^3.2.4",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
@@ -54,5 +57,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "volta": {
+    "node": "22.14.0"
   }
 }
