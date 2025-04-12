@@ -1,24 +1,39 @@
 'use client'
 
 import { Link } from '@/components/elements/Link'
-import { Area, Category } from '@/types/microcms'
+import { useSpotStore } from '@/stores/spotStore'
+import { Spot } from '@/types/microcms'
 import { formatDate } from '@/utils/formatDate'
 import { Star } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-type Props = {
-  area: Area
-  categories: Category[]
-  updatedAt: string
-}
+export const SpotMeta = ({ spot }: { spot: Spot }) => {
+  const { area, categories, updatedAt } = spot
 
-export const SpotMeta = ({ area, categories, updatedAt }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false)
+
+  const favoriteSpots = useSpotStore((state) => state.favoriteSpots)
+  const addFavoriteSpot = useSpotStore((state) => state.addFavoriteSpot)
+  const removeFavoriteSpot = useSpotStore((state) => state.removeFavoriteSpot)
 
   // お気に入りボタンがクリックされたときの処理
   const handleFavoriteClick = () => {
-    setIsFavorite((prev) => !prev)
+    if (isFavorite) {
+      // お気に入りから削除
+      removeFavoriteSpot(spot.id)
+    } else {
+      // お気に入りに追加
+      addFavoriteSpot(spot)
+    }
   }
+
+  useEffect(() => {
+    // スポットがお気に入りに登録されているかどうか
+    const isSpotInFavorites = favoriteSpots.some(
+      (favSpot) => favSpot.id === spot.id,
+    )
+    setIsFavorite(isSpotInFavorites)
+  }, [favoriteSpots, spot.id])
 
   return (
     <>

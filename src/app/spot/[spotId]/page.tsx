@@ -28,7 +28,7 @@ const SpotPage = async ({ params }: Props) => {
       <SpotPageTitle spot={spot} />
 
       {/* メタ情報 */}
-      <SpotMeta {...spot} />
+      <SpotMeta spot={spot} />
 
       {/* 記事本文 */}
 
