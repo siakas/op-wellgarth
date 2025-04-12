@@ -14,7 +14,7 @@ export const Footer = () => {
           <li>
             <a
               className="transition-opacity hover:opacity-80"
-              href="https://github.com/siakas"
+              href="https://github.com/siakas/op-wellgarth"
               rel="noopener noreferrer"
               target="_blank"
             >
