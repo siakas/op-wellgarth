@@ -10,11 +10,13 @@ export const Header = () => {
         </Link>
       </div>
 
-      {/* <nav>
+      <nav>
         <ul>
-
+          <li>
+            <Link href="/favorites">お気に入り</Link>
+          </li>
         </ul>
-      </nav> */}
+      </nav>
     </header>
   )
 }
